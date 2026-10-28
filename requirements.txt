@@ -1,0 +1,30 @@
+# WelKome AI 도슨트 - requirements.txt
+# 설치 명령어: pip install -r requirements.txt
+
+# ── API  ──────────────────────────────────────────────────
+fastapi==0.135.1
+uvicorn==0.42.0
+pydantic==2.12.5
+python-dotenv==1.2.2
+
+# ── LLM / MCP ─────────────────────────────────────────────────
+openai==2.29.0
+mcp==1.26.0
+
+# ── RAG (FAISS + BGE-M3 + BM25) ───────────────────────────────
+langchain-community==0.4.1
+langchain-core==1.2.20
+sentence-transformers==5.3.0
+faiss-cpu==1.13.2
+rank-bm25==0.2.2
+wikipedia==1.4.0
+numpy==2.4.3
+
+# ── 토크나이저 (Okt) ──────────────────────────────────────────
+#Java(JDK) 설치 필요 → https://www.java.com/en/download/
+konlpy==0.6.0
+
+# ── CV 모델 (EfficientNet-B0) ─────────────────────────────────
+torch==2.10.0
+torchvision==0.25.0
+pillow==12.1.1

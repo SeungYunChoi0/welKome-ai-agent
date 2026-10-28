@@ -1,0 +1,895 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Serif+KR:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+button,
+input,
+textarea,
+.app {
+  font-family: 'Noto Serif KR', serif;
+}
+
+#screen-loading,
+#screen-loading * {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+body {
+  background: #f0f0f3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.app {
+  width: 100%;
+  max-width: 420px;
+}
+
+.phone-frame {
+  width: 393px;
+  height: 852px;
+  max-height: 95vh;
+  border-radius: 55px;
+  border: 8px solid #2c2c2c;
+  box-shadow:
+    0 0 0 2px #4a4a4a,
+    0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: #fdfbf7;
+}
+
+.screen {
+  display: none;
+}
+
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden !important;
+  border-radius: 46px !important;
+}
+
+/* 상단 헤더 */
+.top-bar {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 54px 18px 14px;
+  min-height: 100px;
+  position: relative;
+  border-bottom: 1px solid #e0dcd0;
+  background: #fdfbf7;
+}
+
+.top-bar-logo {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 28px;
+  width: auto;
+  z-index: 10;
+}
+
+.screen-title {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2b2520;
+  margin: 0;
+  z-index: 5;
+  white-space: nowrap;
+}
+
+.chat-title-image {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -38px;
+  height: 130px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  z-index: 5;
+}
+
+.place-label span {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000;
+}
+
+.content {
+  flex: 1;
+  padding: 16px 16px 16px;
+  overflow-y: auto;
+}
+
+#screen-loading {
+  display: none;
+  width: 100%;
+  height: 100%;
+  background-image: url('/static/images/background.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+#screen-loading.active {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+/* 중앙 내용 (로고, 로딩바 등) */
+.loading-inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  text-align: center;
+  width: 100%;
+}
+
+.loading-inner.ready {
+  opacity: 1;
+}
+
+/* 로딩 바 바깥쪽 테두리 */
+.loading-bar-container {
+  width: 280px;
+  height: 8px;
+  background-color: #eee;
+  border-radius: 10px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 65px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  z-index: 20;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #183a81;
+  border-radius: 10px;
+  animation: gameLoading 10s linear forwards;
+  animation-play-state: paused;
+}
+
+.loading-bar-fill.running {
+  animation-play-state: running;
+}
+
+/* 애니메이션 */
+@keyframes gameLoading {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+/* 로고 위치 */
+.app-title-logo {
+  position: absolute;
+  top: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  height: auto;
+  z-index: 10;
+  margin: 0;
+}
+
+.loading-caption {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.king-info p {
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+/* 메인 화면 레이아웃 */
+.content-main {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 16px 30px;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.upload-block {
+  flex: 0 0 auto;
+  height: 220px;
+  margin-bottom: 16px;
+}
+
+.upload-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 12px;
+  border: none;
+  background-image: url('/static/images/mountain.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.upload-label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.upload-icon {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+  margin-bottom: 12px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+#upload-instruction {
+  color: #010203;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 0 12px;
+}
+
+.image-preview {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: none;
+  pointer-events: none;
+}
+
+/* 설명 영역 */
+.description-card {
+  flex: 0 0 auto;
+  background: #f4f0e6;
+  border: 1px solid #e8e2d2;
+  border-radius: 18px;
+  padding: 18px 16px;
+  overflow-y: visible;
+  height: auto;
+  margin-bottom: 16px;
+}
+
+.description-card h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+  color: #2b2520;
+}
+
+.description-card p {
+  font-size: 14.5px;
+  color: #4a4036;
+  line-height: 1.65;
+}
+
+/* 맛집 화면 */
+.subtitle {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.restaurants-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.restaurant-card {
+  display: flex;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 14px;
+  background: #f4f0e6;
+  border: 1px solid #e6dfd0;
+}
+
+.restaurant-thumb {
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: #ddd;
+}
+
+.restaurant-info h3 {
+  font-size: 14.5px;
+  margin-bottom: 4px;
+  color: #2b2520;
+}
+
+.restaurant-info p {
+  font-size: 12px;
+  color: #555;
+}
+
+/* 챗봇 화면 */
+.chatbot-content {
+  padding-bottom: 110px;
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.chat-bubble {
+  max-width: 80%;
+  padding: 8px 12px;
+  border-radius: 16px;
+  font-size: 13px;
+  white-space: pre-wrap;
+}
+
+.chat-bubble.user {
+  align-self: flex-end;
+  background: #2c4f7c;
+  color: #fff;
+  border-bottom-right-radius: 4px;
+}
+
+/* 봇(조선왕조실록) 말풍선 */
+.chat-bubble.bot {
+  align-self: flex-start;
+  background: #f4f0e6;
+  color: #2b2520;
+  border: 1px solid #e0dcd0;
+  border-bottom-left-radius: 4px;
+}
+
+.chat-meta {
+  font-size: 11px;
+  color: #888;
+  margin-bottom: 2px;
+}
+
+.chat-input-bar {
+  display: flex;
+  gap: 8px;
+  padding: 8px 10px;
+  border-top: 1px solid #e0dcd0;
+  background: #fdfbf7;
+  padding-bottom: 10px;
+}
+
+.chat-input-bar input {
+  flex: 1;
+  border-radius: 999px;
+  border: 1px solid #c0b8a8;
+  background: #f4f0e6;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: #4a4036;
+}
+
+.chat-input-bar button {
+  background: #2c4f7c;
+  color: #fff;
+}
+
+/* 하단 네비게이션 */
+.bottom-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 4px 12px;
+  height: 90px;
+  border-top: 1px solid #e0dcd0;
+  background: #fdfbf7;
+}
+
+.nav-item {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 4px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  color: #999;
+  cursor: pointer;
+}
+
+.nav-item .nav-icon {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  margin-bottom: 0px;
+  pointer-events: none;
+  filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.1));
+}
+
+.nav-item .nav-label {
+  font-size: 10px;
+  margin-top: -7px;
+  font-weight: 600;
+}
+
+.nav-item.active {
+  color: #2c4f7c;
+}
+
+.nav-item.active .nav-icon {
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* 빈 상태(Empty State) 안내 카드 스타일 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #666;
+  background-color: #f4f0e6;
+  border-radius: 24px;
+  padding: 40px 30px;
+  margin: 80px auto 0;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+  max-width: 320px;
+  width: 90%;
+}
+
+.empty-icon {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 20px;
+  opacity: 0.9;
+}
+
+.empty-state h3 {
+  font-size: 20px;
+  color: #333;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+
+.empty-state p {
+  font-size: 15px;
+  line-height: 1.6;
+  color: #777;
+  margin-bottom: 28px;
+}
+
+.btn-primary {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  border-radius: 99px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(44, 79, 124, 0.3);
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.btn-primary:hover {
+  background-color: #1f3a58;
+}
+
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+.chat-bubble {
+  font-size: 14px;
+  line-height: 1.5;
+  padding: 10px 14px;
+}
+
+/* 말풍선 위 이름(실록이) 크기 */
+.chat-meta {
+  font-size: 14px;
+  color: #777;
+  font-weight: 600;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Twemoji 이미지 인라인 크기 통일 */
+.chat-meta img.emoji,
+.chat-bubble img.emoji {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.1em;
+  display: inline-block;
+}
+
+.loading-copyright {
+  text-align: center;
+  font-size: 11px;
+  color: #999;
+  padding-bottom: 24px;
+  width: 100%;
+  margin-top: -10px;
+}
+
+.loading-caption {
+  font-size: 14.5px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.king-info p {
+  font-size: 13.5px;
+  color: #555;
+  margin-bottom: 4px;
+}
+
+.text-blue {
+  color: #2c4f7c;
+  font-weight: 700;
+}
+
+.description-card p {
+  font-size: 14.5px;
+  color: #444;
+  line-height: 1.6;
+}
+
+.description-card h2 {
+  font-size: 18px;
+  margin-bottom: 6px;
+}
+
+/* 프레임 크기 및 외관 */
+.phone-frame {
+  width: 393px;
+  height: 852px;
+  max-height: 95vh;
+  border-radius: 55px;
+  border: 8px solid #2c2c2c;
+  box-shadow:
+    0 0 0 2px #4a4a4a,
+    0 20px 50px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  background: #fdfbf7;
+  opacity: 0;
+  transition: opacity 0.5s ease-out;
+}
+
+.phone-frame.visible {
+  opacity: 1;
+}
+
+/* 다이내믹 아일랜드 (Dynamic Island) */
+.dynamic-island-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 54px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.dynamic-island {
+  margin-top: 11px;
+  width: 120px;
+  height: 35px;
+  background: #000;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  transition: width 0.3s;
+}
+
+/* 카메라 렌즈 */
+.camera-sensor {
+  width: 10px;
+  height: 10px;
+  background: #1a1a1a;
+  border-radius: 50%;
+  box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.2);
+}
+
+/* 하단 홈 인디케이터 */
+.home-indicator-area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 8px;
+  z-index: 9999;
+  pointer-events: none;
+}
+
+.home-indicator {
+  width: 130px;
+  height: 5px;
+  background-color: #000000;
+  border-radius: 100px;
+  opacity: 0.8;
+}
+
+/* Safe Area */
+
+.top-bar {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 54px 18px 14px;
+  min-height: 100px;
+  border-bottom: 1px solid #e0dcd0;
+  background: #fdfbf7;
+}
+
+.loading-content-wrapper {
+  padding-top: 70px;
+}
+
+.content {
+  padding-bottom: 40px;
+}
+
+/* 챗봇 입력창 위치 조정 (하단 네비게이션 위) */
+.chat-input-bar {
+  padding-bottom: 10px;
+}
+
+/* 로고 위치 미세 조정 */
+.top-bar-logo {
+  top: auto;
+  bottom: 14px;
+  transform: none;
+}
+
+/* 스크롤바 숨기기 */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+#chat-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 60px;
+  padding: 0 15px;
+  background: #f8f8f8;
+  border-top: 1px solid #ddd;
+  flex-shrink: 0;
+}
+
+#chat-input {
+  flex: 1;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0 15px;
+  outline: none;
+  font-size: 14px;
+}
+
+#chat-form button {
+  width: 60px;
+  height: 40px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+#chat-form button:active {
+  transform: scale(0.98);
+}
+
+/* 로딩 화면 텍스트 영역 공통 스타일 */
+.loading-text-area {
+  width: 100%;
+  text-align: center;
+  font-family: 'Noto Sans KR', sans-serif !important;
+  word-break: keep-all;
+  padding: 0 15px;
+  z-index: 10;
+  line-height: 1.4;
+}
+
+/* 왕 이름 / MBTI 위치 */
+#loading-top-text {
+  position: absolute;
+  top: 43%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+}
+
+.quote-divider {
+  width: 280px;
+  height: 1px;
+  background-color: #183a81;
+  margin: 0 auto 16px;
+  opacity: 0.7;
+}
+
+.king-title {
+  color: #183a81;
+  font-size: 27px;
+  font-weight: 750;
+  margin-bottom: 10px;
+  line-height: 1.3;
+}
+
+/* MBTI */
+.king-mbti {
+  color: #994845;
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: 2px;
+  margin-top: 5px;
+}
+
+/* 명언 위치 */
+#loading-bottom-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85%;
+  text-align: center;
+  z-index: 10;
+}
+
+/* 명언 */
+.king-quote {
+  color: #183a81;
+  font-size: 19px;
+  font-weight: 450;
+  line-height: 1.6;
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background-color: #994845;
+  border-radius: 10px;
+  animation: gameLoading 10s linear forwards;
+  animation-play-state: paused;
+}
+
+.initial-loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 50px;
+  border: 5px solid #e0e0e0;
+  border-top: 5px solid #666666;
+  border-radius: 50%;
+  z-index: 9999;
+  display: none;
+  animation: spinRing 1s linear infinite;
+}
+
+/* 회전 애니메이션 키프레임 */
+@keyframes spinRing {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.place-label {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  z-index: 5;
+}
+
+#place-label-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #2b2520;
+  border-bottom: none;
+  padding-bottom: 0;
+  letter-spacing: 0;
+}
+
+#screen-main,
+#screen-restaurants,
+#screen-chatbot {
+  background-image: url('/static/images/back.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.top-bar,
+.bottom-nav,
+.content-main,
+.content,
+.chat-input-bar {
+  background: transparent !important;
+}
+
+#chat-form {
+  background: rgba(255, 255, 255, 0.4);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#sillok-card {
+  margin-bottom: 50px;
+}

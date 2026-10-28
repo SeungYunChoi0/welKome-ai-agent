@@ -1,0 +1,38 @@
+# Python
+venv/
+.venv/
+env/
+demo_env/
+__pycache__/
+*.py[cod]
+
+# Secrets
+.env
+.env.*
+
+# Model / index files
+*.enf
+*.onnx
+*.pb
+*.pt
+*.pkl
+*.faiss
+
+# Assets are distributed separately; keep only the directory
+app/assets/*
+!app/assets/.gitkeep
+
+# Runtime
+app/temp_uploads/
+*.log
+
+# Local-only
+ETC/
+
+# OS / editor
+.DS_Store
+._*
+~$*
+
+# Restaurant menu photos are distributed with assets
+frontend/static/images/*_menu.*

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <title>welKome</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/static/style.css?v=5.7">
+  <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <div id="initial-loader" class="initial-loader"></div>
+
+  <div class="app">
+
+    <div class="phone-frame">
+
+      <div class="dynamic-island-container">
+        <div class="dynamic-island">
+          <div class="camera-sensor"></div>
+        </div>
+      </div>
+
+      <section id="screen-loading" class="screen active">
+        <div class="loading-inner">
+          <img src="/static/images/logo.png" alt="welKome" class="app-title-logo">
+          <div id="loading-top-text" class="loading-text-area"></div>
+          <div class="loading-bar-container">
+            <div class="loading-bar-fill"></div>
+          </div>
+          <div id="loading-bottom-text" class="loading-text-area"></div>
+        </div>
+      </section>
+
+      <section id="screen-main" class="screen">
+        <header class="top-bar">
+          <div class="place-label">
+            <span id="place-label-text">장소</span>
+          </div>
+        </header>
+
+        <main class="content content-main">
+          <div class="upload-block">
+            <div class="upload-container">
+              <label for="image-input" class="upload-label">
+
+                <span id="upload-instruction">탭하여 한국의 명소 사진 업로드하기</span>
+                <input type="file" id="image-input" accept="image/*" hidden>
+              </label>
+              <img id="image-preview" class="image-preview" alt="Preview">
+            </div>
+          </div>
+
+          <div id="main-desc-card" class="description-card">
+            <h2 id="desc-title">환영합니다</h2>
+            <p id="desc-text">
+              한국의 명소 사진을 올려주시면<br>장소의 정보와 추천 내용을 얻을 수 있습니다.<br><br>(예시) 경복궁은 서울특별시 종로구 사직로 161에 위치한 조선시대 궁궐 중 하나이자 사적
+              제117호에 등재된 유산입니다.
+            </p>
+          </div>
+
+          <div id="sillok-card" class="description-card" style="display: none;">
+            <h2 id="sillok-title">조선왕조실록</h2>
+            <p id="sillok-text"></p>
+          </div>
+        </main>
+
+        <nav class="bottom-nav">
+          <button class="nav-item active" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+
+          <button class="nav-item" data-target="restaurants">
+            <img src="/static/images/food.png" class="nav-icon" alt="맛집">
+            <span class="nav-label">맛집</span>
+          </button>
+
+          <button class="nav-item" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <section id="screen-restaurants" class="screen">
+        <header class="top-bar">
+          <h1 class="screen-title">주변 맛집</h1>
+        </header>
+        <main class="content">
+          <p id="restaurants-header" class="subtitle">
+            사진을 업로드하면 주변 맛집을 추천해 드립니다.
+          </p>
+          <div id="restaurants-list" class="restaurants-list"></div>
+        </main>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+          <button class="nav-item active" data-target="restaurants">
+            <img src="/static/images/food.png" class="nav-icon" alt="맛집">
+            <span class="nav-label">맛집</span>
+          </button>
+          <button class="nav-item" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <section id="screen-chatbot" class="screen">
+        <header class="top-bar">
+          <img src="/static/images/siltalk.png" alt="K-챗봇" class="chat-title-image">
+        </header>
+
+        <main class="content chatbot-content">
+          <div id="chat-window" class="chat-window"></div>
+        </main>
+
+        <form id="chat-form" class="chat-input-bar">
+          <input id="chat-input" type="text" placeholder="명소, 맛집, 역사에 대해 물어보세요…" autocomplete="off">
+          <button type="submit">전송</button>
+        </form>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+          <button class="nav-item" data-target="restaurants">
+            <img src="/static/images/food.png" class="nav-icon" alt="맛집">
+            <span class="nav-label">맛집</span>
+          </button>
+          <button class="nav-item active" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <div class="home-indicator-area">
+        <div class="home-indicator"></div>
+      </div>
+
+    </div>
+  </div>
+  <script src="/static/script.js?v=5.7"></script>
+  <script>
+    function applyTwemoji(node) {
+      twemoji.parse(node || document.body, {
+        folder: 'svg',
+        ext: '.svg',
+        base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+      });
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTwemoji(document.body);
+      const observer = new MutationObserver(muts => {
+        muts.forEach(m => m.addedNodes.forEach(n => {
+          if (n.nodeType === 1) applyTwemoji(n);
+        }));
+      });
+      observer.observe(document.body, { childList: true, subtree: true });
+    });
+  </script>
+</body>
+
+</html>
