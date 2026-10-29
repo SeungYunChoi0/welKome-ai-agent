@@ -321,10 +321,12 @@ function setupChatbot() {
 
       loadingBubble.textContent = reply;
       state.chatHistory = data.chat_history;
+      scrollChatToBottom();
     } catch (e) {
       console.error("Chat Error:", e);
       loadingBubble.textContent = CONSTANTS.chatError;
       state.chatHistory.push({ role: 'ai', content: '오류가 발생했습니다.' });
+      scrollChatToBottom();
     } finally {
       state.isBotTyping = false;
     }
@@ -340,7 +342,13 @@ function addUserMessage(text) {
   bubble.textContent = text;
 
   chatWindow.appendChild(bubble);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
+  scrollChatToBottom();
+}
+
+function scrollChatToBottom() {
+  const scroller = document.querySelector(".chatbot-content");
+  if (!scroller) return;
+  scroller.scrollTo({ top: scroller.scrollHeight, behavior: "smooth" });
 }
 
 function addBotMessage(text, role = 'bot', isLoading = false) {
@@ -364,7 +372,7 @@ function addBotMessage(text, role = 'bot', isLoading = false) {
   wrapper.appendChild(meta);
   wrapper.appendChild(bubble);
   chatWindow.appendChild(wrapper);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
+  scrollChatToBottom();
 
   if (state.chatHistory.length === 0 && !isLoading) {
     state.chatHistory.push({ role: 'ai', content: text });
