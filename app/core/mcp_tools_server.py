@@ -1,3 +1,7 @@
+import asyncio
+import contextvars
+import hashlib
+import functools
 import json
 import sys
 import os
@@ -7,7 +11,7 @@ from pathlib import Path
 import random
 from typing import Dict, Any, List, Optional
 
-from mcp.server.fastmcp import FastMCP
+from mcp.server.fastmcp import FastMCP, Context
 from PIL import Image
 
 import torch
@@ -38,6 +42,38 @@ CV_MODEL_PATH     = ASSETS_DIR / "landmark_classifier_best.pt"
 CV_LABEL_PATH     = ASSETS_DIR / "class_labels.json"
 
 
+# A ContextVar keeps simultaneous MCP calls isolated, including worker threads.
+_TRACE = contextvars.ContextVar("search_trace", default=None)
+_TOKENIZER_NAME = "미사용"
+
+def _observe(stage, status, title, **data):
+    callback = _TRACE.get()
+    if callback:
+        callback({"stage": stage, "status": status, "title": title, **data})
+
+def _cards(docs, maximum=8):
+    cards = []
+    for rank, doc in enumerate(docs[:maximum], 1):
+        m = doc.metadata
+        cards.append({
+            "id": hashlib.sha256(doc.page_content.encode()).hexdigest()[:12],
+            "rank": rank,
+            "title": f"{m.get('king_name', '왕명 미상')} · {m.get('year_solar', '?')}년 {m.get('month', '')}월",
+            "text": doc.page_content[:360],
+        })
+    return cards
+
+def _traced_search(stage, title):
+    def decorate(fn):
+        @functools.wraps(fn)
+        def wrapped(*args, **kwargs):
+            _observe(stage, "running", title)
+            docs = fn(*args, **kwargs)
+            _observe(stage, "done", title, count=len(docs), documents=_cards(docs))
+            return docs
+        return wrapped
+    return decorate
+
 # ── 전역 상태
 RAG_DB       = None
 BM25_PAYLOAD = None  # {"bm25": BM25Okapi, "chunks": list[dict]}
@@ -52,13 +88,14 @@ _TOKENIZE_FN = None
 
 def _get_tokenizer():
     """Okt 명사 추출을 쓰고, 설치되지 않았으면 조사 제거 정규식으로 대체합니다."""
-    global _TOKENIZE_FN
+    global _TOKENIZE_FN, _TOKENIZER_NAME
     if _TOKENIZE_FN is not None:
         return _TOKENIZE_FN
 
     try:
         from konlpy.tag import Okt
         okt = Okt()
+        _TOKENIZER_NAME = "Okt 명사 추출"
         _TOKENIZE_FN = lambda text: okt.nouns(str(text))
         print("[MCP] Okt 토크나이저 로드 완료", file=sys.stderr)
     except Exception:
@@ -73,6 +110,7 @@ def _get_tokenizer():
                     tokens.append(t)
             return tokens
         _TOKENIZE_FN = _regex_tokenize
+        _TOKENIZER_NAME = "정규식 대체 토크나이저"
         print("[MCP] 정규식 토크나이저 사용 (Okt 미설치)", file=sys.stderr)
 
     return _TOKENIZE_FN
@@ -311,6 +349,7 @@ def extract_extra_keywords(query: str, meta_filter: dict) -> str:
 
 # ── 검색 내부 함수
 
+@_traced_search("scan", "메타데이터 조건으로 실록 검색")
 def _chunks_scan(meta_filter: dict) -> list:
     """
     전체 청크를 직접 스캔해 meta_filter를 만족하는 문서를 모두 반환합니다.
@@ -350,6 +389,7 @@ def _chunks_scan(meta_filter: dict) -> list:
     return results
 
 
+@_traced_search("vector", "BGE-M3 · FAISS 벡터 검색")
 def _faiss_search(query: str, meta_filter: dict, limit: int) -> list:
     """
     메타 필터가 있으면 k=500으로 넉넉히 검색한 뒤 직접 필터링하고,
@@ -371,6 +411,7 @@ def _faiss_search(query: str, meta_filter: dict, limit: int) -> list:
             print(f"[RAG] 메타 필터 검색: {len(results)}개 / 후보 {len(candidates)}개 ({meta_filter})", file=sys.stderr)
         except Exception as e:
             print(f"[RAG] 메타 필터 검색 실패: {e}", file=sys.stderr)
+            _observe("vector", "warning", "필터 벡터 검색 실패 · MMR 보완 시도")
 
     if len(results) < limit:
         try:
@@ -386,17 +427,21 @@ def _faiss_search(query: str, meta_filter: dict, limit: int) -> list:
                     seen.add(doc.page_content)
         except Exception as e:
             print(f"[RAG] MMR 검색 실패: {e}", file=sys.stderr)
+            _observe("vector", "warning", "MMR 검색 실패")
 
     return results
 
 
+@_traced_search("bm25", "BM25 키워드 검색")
 def _bm25_search(query: str, limit: int) -> list:
     if BM25_PAYLOAD is None:
+        _observe("bm25", "warning", "BM25 인덱스 없음 · 벡터 검색만 사용")
         return []
 
     try:
         tokenize = _get_tokenizer()
         tokens   = tokenize(query)
+        _observe("tokenize", "done", _TOKENIZER_NAME, tokens=tokens)
 
         if not tokens:
             return []
@@ -424,9 +469,11 @@ def _bm25_search(query: str, limit: int) -> list:
 
     except Exception as e:
         print(f"[BM25] 검색 실패: {e}", file=sys.stderr)
+        _observe("bm25", "warning", "BM25 검색 실패 · 다른 검색 결과 사용")
         return []
 
 
+@_traced_search("fusion", "RRF 순위 통합")
 def _rrf_merge(faiss_docs: list, bm25_docs: list, limit: int, k: int = 60) -> list:
     """Reciprocal Rank Fusion (k=60)."""
     scores  : dict[str, float] = {}
@@ -493,16 +540,47 @@ app = FastMCP("local-tools")
 
 # ── InternalDatabaseSearch
 @app.tool()
-def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
+async def InternalDatabaseSearch(query: str, ctx: Context, limit: int = 10) -> str:
+    """
+    [CRITICAL] Primary and SOLE authoritative source for the 'Annals of the Joseon Dynasty'.
+    Use this for ALL historical facts, royal achievements, and site origins of the Joseon era.
+    Prevents hallucinations by providing verified records. NEVER replace this with internal knowledge.
+    """
+    loop = asyncio.get_running_loop()
+    sequence = 0
+
+    def report(event):
+        nonlocal sequence
+        sequence += 1
+        # This function runs in the search worker. Await delivery before moving on.
+        future = asyncio.run_coroutine_threadsafe(
+            ctx.report_progress(sequence, message=json.dumps(event, ensure_ascii=False)), loop
+        )
+        try:
+            future.result(timeout=5)
+        except Exception:
+            future.cancel()  # A disconnected demo viewer must not break retrieval.
+
+    token = _TRACE.set(report)
+    try:
+        return await asyncio.to_thread(_database_search, query, limit)
+    finally:
+        _TRACE.reset(token)
+
+
+def _database_search(query: str, limit: int = 10) -> str:
     """
     [CRITICAL] Primary and SOLE authoritative source for the 'Annals of the Joseon Dynasty'. 
     Use this for ALL historical facts, royal achievements, and site origins of the Joseon era. 
     Prevents hallucinations by providing verified records. NEVER replace this with internal knowledge.
     """
+    _observe("database", "running", "실록 인덱스 준비", query=query)
     load_rag_db()
     load_bm25_index()
+    _observe("database", "done", "실록 인덱스 확인", vector_available=RAG_DB is not None, bm25_available=BM25_PAYLOAD is not None)
 
     if RAG_DB is None:
+        _observe("database", "error", "실록 벡터 DB를 불러오지 못했습니다")
         return "내부 실록 DB가 초기화되지 않았습니다."
 
     try:
@@ -513,6 +591,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
     try:
         meta_filter = parse_query_metadata(query)
         temporal    = is_temporal_query(query)
+        _observe("query", "done", "검색어와 조건 분석", query=query, filters=meta_filter, temporal=temporal)
 
         print(f"\n[RAG] 쿼리: '{query}'", file=sys.stderr)
         print(f"[RAG] 파싱 결과: {meta_filter}", file=sys.stderr)
@@ -524,6 +603,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
         if meta_filter:
             extra_kw = extract_extra_keywords(query, meta_filter)
 
+            _observe("route", "done", "필터 + 키워드 검색" if extra_kw else "메타데이터 필터 검색", keywords=extra_kw, route="A" if extra_kw else "B")
             if extra_kw:
                 keywords = [kw for kw in extra_kw.split() if len(kw) >= 2]
 
@@ -532,6 +612,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
                 except ImportError:
                     from langchain.schema import Document
 
+                _observe("keyword", "running", "필터 범위 안에서 본문 키워드 검색", tokens=keywords)
                 keyword_matched = []
                 if BM25_PAYLOAD:
                     for chunk in BM25_PAYLOAD["chunks"]:
@@ -547,6 +628,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
 
                 print(f"[RAG] 전략A (복합): 키워드={keywords} 텍스트매칭 {len(keyword_matched)}개", file=sys.stderr)
 
+                _observe("keyword", "done", "본문 키워드 검색", count=len(keyword_matched), documents=_cards(keyword_matched))
                 if keyword_matched:
                     faiss_docs = _faiss_search(query, meta_filter, limit)
                     merged = _rrf_merge(faiss_docs, keyword_matched, limit=limit * 2)
@@ -561,6 +643,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
                 merged = scan_docs
 
         else:
+            _observe("route", "done", "벡터 + BM25 하이브리드 검색", route="C")
             faiss_docs = _faiss_search(query, {}, limit)
             bm25_docs  = _bm25_search(query, limit)
             print(f"[RAG] 전략C (하이브리드): FAISS {len(faiss_docs)}개 / BM25 {len(bm25_docs)}개", file=sys.stderr)
@@ -575,6 +658,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
 
         # 결과가 없으면 전략 C로 재시도
         if not merged:
+            _observe("fallback", "warning", "결과 없음 · 하이브리드 검색 재시도")
             print(f"[RAG] 결과 0개 → 전략C(Hybrid) 자동 fallback 실행", file=sys.stderr)
             faiss_fb = _faiss_search(query, {}, limit)
             bm25_fb  = _bm25_search(query, limit)
@@ -585,7 +669,10 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
             if temporal:
                 merged = _sort_by_time(merged)
 
+        if temporal:
+            _observe("sort", "done", "기록을 시간순으로 정렬")
         final = merged[:limit]
+        _observe("evidence", "done", "생성 모델에 전달할 실록 기록", count=len(final), documents=_cards(final, maximum=20))
 
         if not final:
             return "내부 실록 DB에서 관련 기록을 찾지 못했습니다."
@@ -596,6 +683,7 @@ def InternalDatabaseSearch(query: str, limit: int = 10) -> str:
         print(f"❌ [RAG] 검색 오류: {e}", file=sys.stderr)
         import traceback
         traceback.print_exc()
+        _observe("search", "error", "실록 검색 중 오류가 발생했습니다")
         return f"RAG DB 검색 오류: {e}"
 
 

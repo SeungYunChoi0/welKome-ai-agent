@@ -306,26 +306,13 @@ function setupChatbot() {
     const loadingBubble = addBotMessage("...", 'bot', true);
 
     try {
-      const response = await fetch("/chat", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          input: text,
-          chat_history: state.chatHistory,
-        }),
-      });
-      if (!response.ok) throw new Error("Server error");
-
-      const data = await response.json();
-      const reply = data.output;
-
-      loadingBubble.textContent = reply;
+      const data = await window.pipelineDemo.ask(text, state.chatHistory);
+      loadingBubble.textContent = data.output;
       state.chatHistory = data.chat_history;
       scrollChatToBottom();
     } catch (e) {
       console.error("Chat Error:", e);
       loadingBubble.textContent = CONSTANTS.chatError;
-      state.chatHistory.push({ role: 'ai', content: '오류가 발생했습니다.' });
       scrollChatToBottom();
     } finally {
       state.isBotTyping = false;

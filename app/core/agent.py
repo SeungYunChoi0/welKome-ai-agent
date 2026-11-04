@@ -1,3 +1,4 @@
+import asyncio
 import os
 import sys
 import json
@@ -249,24 +250,49 @@ class MCPWelKomeAgent:
             self._mcp_session    = None
             print("[Agent] MCP 영구 세션 종료 완료.")
 
-    async def _call_tool(self, tool_name_full: str, arguments: Dict[str, Any]) -> Any:
+    async def _call_tool(self, tool_name_full: str, arguments: Dict[str, Any], progress=None) -> Any:
         try:
             server_name, tool_part = tool_name_full.split("_", 1)
         except ValueError:
+            if progress:
+                raise RuntimeError("도구 이름 형식이 올바르지 않습니다.")
             return {"error": f"잘못된 도구 이름 형식: {tool_name_full}"}
 
         tool_name = tool_part.replace("__", ".") if "__" in tool_part else tool_part
         print(f"\n[🚀 MCP Tool Call] '{server_name}.{tool_name}' 호출 (args: {arguments})")
 
         if server_name != "local-tools":
+            if progress:
+                raise RuntimeError("알 수 없는 도구 서버입니다.")
             return {"error": f"알 수 없는 MCP 서버: {server_name}"}
 
         if self._mcp_session is None:
+            if progress:
+                raise RuntimeError("검색 도구 연결이 준비되지 않았습니다.")
             return {"error": "MCP 세션 미초기화. setup_mcp_servers()를 먼저 호출하세요."}
 
         try:
-            result = await self._mcp_session.call_tool(tool_name, arguments)
+            tool_failed = False
+            async def on_progress(value, total, message):
+                nonlocal tool_failed
+                if progress and message:
+                    try:
+                        event = json.loads(message)
+                    except (TypeError, ValueError):
+                        return
+                    if not isinstance(event, dict):
+                        return
+                    tool_failed = tool_failed or event.get("status") == "error"
+                    await progress(event)
+
+            result = await self._mcp_session.call_tool(
+                tool_name, arguments, progress_callback=on_progress if progress else None
+            )
+            if progress and (tool_failed or getattr(result, "isError", False)):
+                raise RuntimeError("도구 실행에 실패했습니다.")
         except Exception as e:
+            if progress:
+                raise
             print(f"❌ [MCP] 도구 '{tool_name_full}' 실행 실패: {e}")
             return {"error": f"tool '{tool_name_full}' 실패: {e}"}
 
@@ -320,7 +346,12 @@ class MCPWelKomeAgent:
         user_query: str,
         chat_history: Optional[List[Dict[str, str]]] = None,
         landmark_id: Optional[str] = None,
+        progress=None,
     ) -> str:
+
+        async def observe(stage, status, title, **data):
+            if progress:
+                await progress({"stage": stage, "status": status, "title": title, **data})
 
         def deep_clean(obj):
             try:
@@ -350,13 +381,15 @@ class MCPWelKomeAgent:
                 else:
                     tc = "auto"
 
-                response = self.openai_client.chat.completions.create(
+                await observe("model", "running", "질문을 해석하고 검색 도구 선택" if not tool_called else "검색 근거로 답변 생성", turn=current_turn)
+                response = await asyncio.to_thread(self.openai_client.chat.completions.create,
                     model=self.model_name,
                     messages=messages,
                     tools=clean_tools,
                     tool_choice=tc,
                 )
 
+                await observe("model", "done", "모델 응답 수신", turn=current_turn)
                 raw_message      = response.choices[0].message
                 response_message = deep_clean(raw_message)
 
@@ -369,7 +402,9 @@ class MCPWelKomeAgent:
                     for tool_call in tool_calls:
                         function_name = tool_call["function"]["name"]
                         function_args = json.loads(tool_call["function"]["arguments"])
-                        tool_result   = await self._call_tool(function_name, function_args)
+                        await observe("tool", "running", "검색 도구 실행", tool=function_name, query=function_args.get("query", ""))
+                        tool_result = await self._call_tool(function_name, function_args, progress=progress)
+                        await observe("tool", "done", "도구 결과 수신", tool=function_name)
                         messages.append({
                             "tool_call_id": tool_call["id"],
                             "role":         "tool",
@@ -382,18 +417,26 @@ class MCPWelKomeAgent:
 
                 if self._is_degenerated(final_text):
                     print(f"⚠️ [Agent] Degeneration 탐지 — 응답 차단 (turn={current_turn})")
+                    if progress:
+                        raise RuntimeError("모델 응답 검증에 실패했습니다. 다시 질문해 주세요.")
                     return "죄송합니다. 일시적인 오류로 답변을 완료하지 못했습니다. 다시 질문해 주세요."
 
                 final_text = self._sanitize_response(final_text)
 
                 if not final_text.strip():
+                    if progress:
+                        raise RuntimeError("모델이 빈 답변을 반환했습니다.")
                     return "죄송합니다. 답변을 완료하지 못했습니다. 다시 질문해 주세요."
 
                 return final_text
 
+            if progress:
+                raise RuntimeError("도구 호출 횟수를 초과해 답변을 완료하지 못했습니다.")
             return "죄송합니다. 답변을 완료하지 못했습니다. 다시 질문해 주세요."
 
         except Exception as e:
+            if progress:
+                raise
             print(f"❌ [Agent] OpenAI 호출 오류: {e}")
             import traceback
             traceback.print_exc()
@@ -578,9 +621,12 @@ class MCPAgentExecutor:
             text = await self.agent.answer(
                 user_query=final_query,
                 chat_history=chat_history,
+                progress=inputs.get("progress"),
             )
             return {"output": text}
         except Exception as e:
+            if inputs.get("progress"):
+                raise
             print(f"❌ [Agent] ainvoke 처리 중 오류: {e}")
             return {"output": f"에이전트 오류: {e}"}
 

@@ -1,3 +1,5 @@
+import asyncio
+import time
 import os
 import shutil
 import json
@@ -5,7 +7,7 @@ import uuid
 from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, StreamingResponse
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
@@ -173,6 +175,66 @@ async def chat_with_agent(request: ChatRequest):
         return ChatResponse(output=response['output'], chat_history=new_history)
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"에이전트 호출 실패: {e}")
+
+
+@app.post("/chat/stream", summary="데모: 실제 검색 진행 이벤트 스트림")
+async def stream_chat(request: ChatRequest):
+    agent = APP_STATE.get("agent")
+    if not agent:
+        raise HTTPException(status_code=503, detail="에이전트가 준비되지 않았습니다.")
+
+    async def events():
+        queue = asyncio.Queue(maxsize=256)
+        started = time.monotonic()
+        sequence = 0
+        failed = False
+
+        async def progress(event):
+            nonlocal sequence, failed
+            sequence += 1
+            failed = failed or event.get("status") == "error"
+            await queue.put({**event, "type": "progress", "seq": sequence,
+                             "elapsed_ms": round((time.monotonic() - started) * 1000)})
+
+        async def run():
+            try:
+                await progress({"stage": "request", "status": "done", "title": "질문 접수", "query": request.input})
+                response = await agent.ainvoke({"input": request.input,
+                    "chat_history": request.chat_history, "progress": progress})
+                if failed:
+                    raise RuntimeError("검색 과정에 오류가 있어 답변을 완료하지 못했습니다.")
+                history = [item.model_dump() for item in request.chat_history]
+                history += [{"role": "human", "content": request.input},
+                            {"role": "ai", "content": response["output"]}]
+                await queue.put({"type": "result", "output": response["output"],
+                                 "chat_history": history,
+                                 "elapsed_ms": round((time.monotonic() - started) * 1000)})
+            except Exception:
+                # Credentials, upstream URLs and raw provider errors stay server-side.
+                import logging
+                logging.exception("Demo chat failed")
+                await queue.put({"type": "error", "message": "답변을 완료하지 못했습니다. 서버 상태를 확인하고 다시 질문해 주세요."})
+
+        task = asyncio.create_task(run())
+        try:
+            while True:
+                try:
+                    event = await asyncio.wait_for(queue.get(), timeout=10)
+                except asyncio.TimeoutError:
+                    yield ": heartbeat\n\n"
+                    continue
+                yield "data: " + json.dumps(event, ensure_ascii=False) + "\n\n"
+                if event["type"] in ("result", "error"):
+                    break
+        finally:
+            task.cancel()
+            try:
+                await task
+            except asyncio.CancelledError:
+                pass
+
+    return StreamingResponse(events(), media_type="text/event-stream",
+        headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 
 @app.get("/loading_quote", summary="[시나리오 0] 로딩 화면 명언")

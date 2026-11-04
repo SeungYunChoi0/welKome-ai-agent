@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>welKome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/style.css?v=5.7">
+  <link rel="stylesheet" href="/static/style.css?v=demo1">
   <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
 
@@ -143,8 +143,19 @@
       </div>
 
     </div>
+    <aside id="pipeline-panel" class="pipeline-panel" aria-label="실시간 검색 과정">
+      <div class="pipeline-topline"><span class="live-label"><i></i> LIVE PIPELINE</span><span id="pipeline-clock">대기 중</span></div>
+      <div class="pipeline-heading"><div><p class="pipeline-eyebrow">welKome · 조선왕조실록</p><h1>질문이 답변이 되기까지</h1></div><button id="pipeline-fullscreen" type="button" aria-label="시연 화면 전체 화면">전체 화면</button></div>
+      <p class="pipeline-intro">실제 실행한 검색 경로와 생성 모델에 전달한 기록을 확인하세요.</p>
+      <div id="pipeline-question" class="pipeline-question">챗봇에서 질문을 입력하면 여기에 검색 과정이 나타납니다.</div>
+      <div id="pipeline-rail" class="pipeline-rail" aria-label="처리 단계"></div>
+      <div class="pipeline-grid"><section class="pipeline-events"><h2>처리 타임라인 <span id="pipeline-status" role="status">READY</span></h2><ol id="pipeline-events"></ol></section>
+      <section class="pipeline-records"><h2 id="pipeline-records-title">검색된 실록 기록</h2><p id="pipeline-records-note">검색이 실행되면 실제 기록 카드가 나타납니다.</p><div id="pipeline-records"></div></section></div>
+      <footer class="pipeline-footer">실행 이벤트 기준 · 질문에 따라 검색 경로가 달라집니다 · 순위 통합: RRF</footer>
+    </aside>
   </div>
-  <script src="/static/script.js?v=5.8"></script>
+  <script src="/static/pipeline.js?v=demo1"></script>
+  <script src="/static/script.js?v=demo1"></script>
   <script>
     function applyTwemoji(node) {
       twemoji.parse(node || document.body, {

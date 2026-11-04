@@ -36,3 +36,6 @@ ETC/
 
 # Restaurant menu photos are distributed with assets
 frontend/static/images/*_menu.*
+
+# Local demo environment symlink
+/demo_env

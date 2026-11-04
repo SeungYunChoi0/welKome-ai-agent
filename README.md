@@ -138,3 +138,7 @@ FastAPI (main.py)
 ## 10. License
 
 This project is licensed under the [MIT License](LICENSE).
+
+## Live pipeline demo
+
+This branch adds live retrieval tracing for chat. Run `bash run_demo.sh` and open http://127.0.0.1:8001. See [demo notes](docs/LIVE_DEMO.md) for setup, behavior and offline verification.
