@@ -134,3 +134,7 @@ FastAPI (main.py)
 - **`Failed to parse JSONRPC message from server`**: Printing to stdout in `mcp_tools_server.py` breaks MCP communication. Use `file=sys.stderr` for every `print()`.
 - **`FAISS 로드 실패`** (FAISS load failed): Check that `index.faiss` and `index.pkl` exist in `app/assets/rag_faiss_index/`.
 - **`Unable to locate a Java Runtime`**: Restart the terminal after installing Java. The server still runs without Java.
+
+## 10. License
+
+This project is licensed under the [MIT License](LICENSE).
