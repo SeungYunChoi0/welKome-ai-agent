@@ -14,7 +14,15 @@ bash run_demo.sh
 데스크톱은 기존 휴대폰 UI 옆에 검색 패널을, 좁은 화면은 아래에 패널을 표시한다.
 
 다른 포트: `DEMO_PORT=8002 bash run_demo.sh`. 중지: 터미널에서 Ctrl+C.
-`run_demo.sh`는 `demo_env/bin/python`을 사용한다. 다른 Python 환경은 `DEMO_PYTHON=/path/to/python bash run_demo.sh`로 지정한다.
+`run_demo.sh`는 명시한 `DEMO_PYTHON` → 활성 conda/venv의 `python` → 로컬 `demo_env/bin/python` → PATH의 `python`/`python3` 순서로 선택한다.
+서버에서는 기존 환경을 활성화한 뒤 실행하면 된다:
+
+```bash
+conda activate welkome
+bash run_demo.sh
+```
+
+Python을 직접 지정하려면 `DEMO_PYTHON="$(command -v python)" bash run_demo.sh`를 사용한다.
 
 현재 로컬 작업 폴더의 `.env`, 가상 환경, Git에 없는 모델·인덱스·메뉴 이미지는 기존 폴더의 파일에 심볼릭 링크로 연결되어 있다.
 원본 폴더가 있어야 실행할 수 있다. `.env`를 편집하면 기존 앱에도 같은 설정이 적용된다.
