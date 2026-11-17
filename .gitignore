@@ -39,3 +39,12 @@ frontend/static/images/*_menu.*
 
 # Local demo environment symlink
 /demo_env
+
+# Local server output
+nohup.out
+
+# Upstream booth-screen checkout (already merged into frontend/, tools/, docs/)
+/welKome-booth-screen/
+
+# Backup written by tools/record_demo.py
+frontend/static/demo_runs.backup.json

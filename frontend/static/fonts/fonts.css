@@ -1,0 +1,24 @@
+/* 부스에 인터넷이 없어도 같은 글꼴이 나오도록 내장한 글꼴.
+   출처: github.com/google/fonts (SIL Open Font License 1.1, OFL-*.txt)
+   한글 음절 · 자모, 라틴 문자, 문장부호만 남겨 줄였다. 한자 등 나머지는 시스템 글꼴로 나온다. */
+@font-face {
+  font-family: 'Noto Sans KR';
+  src: url('/static/fonts/NotoSansKR-VF.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Noto Serif KR';
+  src: url('/static/fonts/NotoSerifKR-VF.woff2') format('woff2');
+  font-weight: 200 900;
+  font-style: normal;
+  font-display: block;
+}
+@font-face {
+  font-family: 'Jua';
+  src: url('/static/fonts/Jua-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: block;
+}

@@ -5,12 +5,18 @@
   <meta charset="UTF-8">
   <title>welKome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/style.css?v=demo1">
+  <link rel="stylesheet" href="/static/style.css?v=booth13">
+  <link rel="stylesheet" href="/static/fonts/fonts.css?v=booth13">
   <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
   <div id="initial-loader" class="initial-loader"></div>
+
+  <div class="wall" aria-hidden="true">
+    <i class="lamp lamp-a"></i><i class="lamp lamp-b"></i><i class="lamp lamp-c"></i>
+    <div class="wall-ink"></div>
+  </div>
 
   <div class="app">
 
@@ -72,37 +78,11 @@
             <span class="nav-label">홈</span>
           </button>
 
-          <button class="nav-item" data-target="restaurants">
-            <img src="/static/images/food.png" class="nav-icon" alt="맛집">
-            <span class="nav-label">맛집</span>
+          <button class="nav-item" data-target="demo">
+            <img src="/static/images/camera.png" class="nav-icon" alt="시연">
+            <span class="nav-label">시연</span>
           </button>
 
-          <button class="nav-item" data-target="chatbot">
-            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
-            <span class="nav-label">챗봇</span>
-          </button>
-        </nav>
-      </section>
-      <section id="screen-restaurants" class="screen">
-        <header class="top-bar">
-          <h1 class="screen-title">주변 맛집</h1>
-        </header>
-        <main class="content">
-          <p id="restaurants-header" class="subtitle">
-            사진을 업로드하면 주변 맛집을 추천해 드립니다.
-          </p>
-          <div id="restaurants-list" class="restaurants-list"></div>
-        </main>
-
-        <nav class="bottom-nav">
-          <button class="nav-item" data-target="main">
-            <img src="/static/images/home.png" class="nav-icon" alt="홈">
-            <span class="nav-label">홈</span>
-          </button>
-          <button class="nav-item active" data-target="restaurants">
-            <img src="/static/images/food.png" class="nav-icon" alt="맛집">
-            <span class="nav-label">맛집</span>
-          </button>
           <button class="nav-item" data-target="chatbot">
             <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
             <span class="nav-label">챗봇</span>
@@ -128,11 +108,40 @@
             <img src="/static/images/home.png" class="nav-icon" alt="홈">
             <span class="nav-label">홈</span>
           </button>
-          <button class="nav-item" data-target="restaurants">
-            <img src="/static/images/food.png" class="nav-icon" alt="맛집">
-            <span class="nav-label">맛집</span>
+          <button class="nav-item" data-target="demo">
+            <img src="/static/images/camera.png" class="nav-icon" alt="시연">
+            <span class="nav-label">시연</span>
           </button>
           <button class="nav-item active" data-target="chatbot">
+            <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
+            <span class="nav-label">챗봇</span>
+          </button>
+        </nav>
+      </section>
+      <section id="screen-demo" class="screen">
+        <header class="top-bar">
+          <img src="/static/images/siltalk.png" alt="실록이 시연" class="chat-title-image">
+        </header>
+
+        <main id="demo-scroller" class="content chatbot-content demo-content">
+          <div id="demo-window" class="chat-window"></div>
+        </main>
+
+        <div class="demo-bar">
+          <div id="demo-typing" class="demo-typing" aria-live="polite"></div>
+          <span class="demo-badge">시연 <b id="demo-count"></b></span>
+        </div>
+
+        <nav class="bottom-nav">
+          <button class="nav-item" data-target="main">
+            <img src="/static/images/home.png" class="nav-icon" alt="홈">
+            <span class="nav-label">홈</span>
+          </button>
+          <button class="nav-item active" data-target="demo">
+            <img src="/static/images/camera.png" class="nav-icon" alt="시연">
+            <span class="nav-label">시연</span>
+          </button>
+          <button class="nav-item" data-target="chatbot">
             <img src="/static/images/chatbot.png" class="nav-icon" alt="챗봇">
             <span class="nav-label">챗봇</span>
           </button>
@@ -144,18 +153,34 @@
 
     </div>
     <aside id="pipeline-panel" class="pipeline-panel" aria-label="실시간 검색 과정">
-      <div class="pipeline-topline"><span class="live-label"><i></i> LIVE PIPELINE</span><span id="pipeline-clock">대기 중</span></div>
-      <div class="pipeline-heading"><div><p class="pipeline-eyebrow">welKome · 조선왕조실록</p><h1>질문이 답변이 되기까지</h1></div><button id="pipeline-fullscreen" type="button" aria-label="시연 화면 전체 화면">전체 화면</button></div>
-      <p class="pipeline-intro">실제 실행한 검색 경로와 생성 모델에 전달한 기록을 확인하세요.</p>
-      <div id="pipeline-question" class="pipeline-question">챗봇에서 질문을 입력하면 여기에 검색 과정이 나타납니다.</div>
+      <div class="pipeline-topline">
+        <span class="live-label"><i></i>LIVE PIPELINE</span>
+        <span class="topline-end"><span id="pipeline-clock">대기 중</span><button id="pipeline-fullscreen" type="button" aria-label="시연 화면 전체 화면">전체 화면</button></span>
+      </div>
+      <header class="pipeline-heading">
+        <p class="pipeline-eyebrow"><span class="logo-plate"><img src="/static/images/logo.png" alt="welKome"></span>조선왕조실록 AI 실록이</p>
+        <h1 class="sign-title">질문이 답변이 되기까지</h1>
+        <p class="pipeline-intro">실제 실행한 검색 경로와 생성 모델에 전달한 기록을 확인하세요.</p>
+      </header>
+      <div class="ask">
+        <p class="ask-label">방금 들어온 질문</p>
+        <div id="pipeline-question" class="pipeline-question">챗봇에서 질문을 입력하면 여기에 검색 과정이 나타납니다.</div>
+      </div>
       <div id="pipeline-rail" class="pipeline-rail" aria-label="처리 단계"></div>
-      <div class="pipeline-grid"><section class="pipeline-events"><h2>처리 타임라인 <span id="pipeline-status" role="status">READY</span></h2><ol id="pipeline-events"></ol></section>
-      <section class="pipeline-records"><h2 id="pipeline-records-title">검색된 실록 기록</h2><p id="pipeline-records-note">검색이 실행되면 실제 기록 카드가 나타납니다.</p><div id="pipeline-records"></div></section></div>
+      <div class="idle-guide" aria-hidden="true">
+        <p>궁금한 조선 역사 이야기를<br><em>AI챗봇 실록이에게 질문</em>해보세요.</p>
+        <p class="idle-sub">조선왕조실록 데이터를 바탕으로 <em>실시간 답변을 확인</em>하며,<br>방대한 역사 기록과 인공지능이 새롭게 만나는 순간을 경험해보세요!</p>
+      </div>
+      <div class="pipeline-grid">
+        <section class="pipeline-events board"><h2>처리 타임라인 <span id="pipeline-status" role="status">READY</span></h2><ol id="pipeline-events"></ol></section>
+        <section class="pipeline-records board"><h2 id="pipeline-records-title">검색된 실록 기록</h2><p id="pipeline-records-note">검색이 실행되면 실제 기록 카드가 나타납니다.</p><div id="pipeline-records"></div></section>
+      </div>
       <footer class="pipeline-footer">실행 이벤트 기준 · 질문에 따라 검색 경로가 달라집니다 · 순위 통합: RRF</footer>
     </aside>
   </div>
-  <script src="/static/pipeline.js?v=demo1"></script>
-  <script src="/static/script.js?v=demo1"></script>
+  <script src="/static/pipeline.js?v=booth13"></script>
+  <script src="/static/demo.js?v=booth13"></script>
+  <script src="/static/script.js?v=booth13"></script>
   <script>
     function applyTwemoji(node) {
       twemoji.parse(node || document.body, {

@@ -306,6 +306,7 @@ function setupChatbot() {
     const loadingBubble = addBotMessage("...", 'bot', true);
 
     try {
+      if (window.demoPlayer) await window.demoPlayer.stop();  // 시연 재생 중이면 먼저 끝낸다
       const data = await window.pipelineDemo.ask(text, state.chatHistory);
       loadingBubble.textContent = data.output;
       state.chatHistory = data.chat_history;

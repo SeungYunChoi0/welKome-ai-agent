@@ -1,0 +1,3054 @@
+{
+ "sample": true,
+ "note": "예시 데이터. tools/record_demo.py로 실제 기록을 만들면 바뀐다.",
+ "runs": [
+  {
+   "question": "세종 때 훈민정음은 언제 만들어졌어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "세종 때 훈민정음은 언제 만들어졌어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "세종 때 훈민정음은 언제 만들졌",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "세종 때 훈민정음은 언제 만들졌",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "세종 때 훈민정음은 언제 만들졌",
+     "filters": {
+      "king_name": "세종"
+     },
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "필터 + 키워드 검색",
+     "keywords": "훈민정음 창제",
+     "route": "A",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "keyword",
+     "status": "running",
+     "title": "필터 범위 안에서 본문 키워드 검색",
+     "tokens": [
+      "훈민정음",
+      "창제"
+     ],
+     "elapsed_ms": 2230
+    },
+    {
+     "stage": "keyword",
+     "status": "done",
+     "title": "본문 키워드 검색",
+     "count": 6,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 2730
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2810
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample03",
+       "rank": 1,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 2,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 3,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 4,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 5,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 6,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 7,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3710
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3800
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 9,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3960
+    },
+    {
+     "stage": "sort",
+     "status": "done",
+     "title": "기록을 시간순으로 정렬",
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4140
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4220
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4290
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6890
+    }
+   ],
+   "elapsed_ms": 7010,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "경복궁은 언제 처음 지어졌어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "경복궁은 언제 처음 지어졌어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "경복궁은 언제 처음 지졌",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "경복궁은 언제 처음 지졌",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "경복궁은 언제 처음 지졌",
+     "filters": {},
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2250
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3150
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "Okt",
+     "tokens": [
+      "경복궁은",
+      "언제",
+      "처음"
+     ],
+     "elapsed_ms": 3210
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "elapsed_ms": 3270
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample04",
+       "rank": 1,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 2,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 3,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 4,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 5,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 6,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample10",
+       "rank": 7,
+       "title": "(예시) 실록 기록 10",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample11",
+       "rank": 8,
+       "title": "(예시) 실록 기록 11",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3670
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3760
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3920
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4180
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6780
+    }
+   ],
+   "elapsed_ms": 6900,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "세종대왕의 건강은 어땠어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "세종대왕의 건강은 어땠어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "세종대왕의 건강은 땠",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "세종대왕의 건강은 땠",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "세종대왕의 건강은 땠",
+     "filters": {
+      "king_name": "세종"
+     },
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "필터 + 키워드 검색",
+     "keywords": "건강",
+     "route": "A",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "keyword",
+     "status": "running",
+     "title": "필터 범위 안에서 본문 키워드 검색",
+     "tokens": [
+      "건강"
+     ],
+     "elapsed_ms": 2230
+    },
+    {
+     "stage": "keyword",
+     "status": "done",
+     "title": "본문 키워드 검색",
+     "count": 6,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 2730
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2810
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample03",
+       "rank": 1,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 2,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 3,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 4,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 5,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 6,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 7,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3710
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3800
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 9,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3960
+    },
+    {
+     "stage": "sort",
+     "status": "done",
+     "title": "기록을 시간순으로 정렬",
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4140
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4220
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4290
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6890
+    }
+   ],
+   "elapsed_ms": 7010,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "1452년에는 무슨 일이 있었어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "1452년에는 무슨 일이 있었어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "1452년에는 무슨 일이 있었",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "1452년에는 무슨 일이 있었",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "1452년에는 무슨 일이 있었",
+     "filters": {
+      "year_solar": 1452
+     },
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "메타데이터 필터 검색",
+     "route": "B",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "scan",
+     "status": "running",
+     "title": "메타데이터 조건으로 실록 검색",
+     "elapsed_ms": 2230
+    },
+    {
+     "stage": "scan",
+     "status": "done",
+     "title": "메타데이터 조건으로 실록 검색",
+     "count": 24,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3030
+    },
+    {
+     "stage": "sort",
+     "status": "done",
+     "title": "기록을 시간순으로 정렬",
+     "elapsed_ms": 3100
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3210
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 3290
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 3360
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 5960
+    }
+   ],
+   "elapsed_ms": 6080,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "장영실은 어떤 일을 했어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "장영실은 어떤 일을 했어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "장영실은 떤 일을 했",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "장영실은 떤 일을 했",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "장영실은 떤 일을 했",
+     "filters": {},
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2250
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3150
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "Okt",
+     "tokens": [
+      "장영실은",
+      "떤",
+      "일을"
+     ],
+     "elapsed_ms": 3210
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "elapsed_ms": 3270
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample04",
+       "rank": 1,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 2,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 3,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 4,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 5,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 6,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample10",
+       "rank": 7,
+       "title": "(예시) 실록 기록 10",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample11",
+       "rank": 8,
+       "title": "(예시) 실록 기록 11",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3670
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3760
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3920
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4180
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6780
+    }
+   ],
+   "elapsed_ms": 6900,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "조선시대에 전염병이 퍼지면 어떻게 했어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "조선시대에 전염병이 퍼지면 어떻게 했어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "조선시대에 전염병이 퍼지면 떻게 했",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "조선시대에 전염병이 퍼지면 떻게 했",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "조선시대에 전염병이 퍼지면 떻게 했",
+     "filters": {},
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2250
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3150
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "Okt",
+     "tokens": [
+      "조선시대에",
+      "전염병이",
+      "퍼지면"
+     ],
+     "elapsed_ms": 3210
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "elapsed_ms": 3270
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample04",
+       "rank": 1,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 2,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 3,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 4,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 5,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 6,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample10",
+       "rank": 7,
+       "title": "(예시) 실록 기록 10",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample11",
+       "rank": 8,
+       "title": "(예시) 실록 기록 11",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3670
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3760
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3920
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4180
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6780
+    }
+   ],
+   "elapsed_ms": 6900,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "측우기는 언제 만들어졌어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "측우기는 언제 만들어졌어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "측우기는 언제 만들졌",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "측우기는 언제 만들졌",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "측우기는 언제 만들졌",
+     "filters": {},
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2250
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3150
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "Okt",
+     "tokens": [
+      "측우기는",
+      "언제",
+      "만들졌"
+     ],
+     "elapsed_ms": 3210
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "elapsed_ms": 3270
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample04",
+       "rank": 1,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 2,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 3,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 4,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 5,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 6,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample10",
+       "rank": 7,
+       "title": "(예시) 실록 기록 10",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample11",
+       "rank": 8,
+       "title": "(예시) 실록 기록 11",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3670
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3760
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3920
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4180
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6780
+    }
+   ],
+   "elapsed_ms": 6900,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "정조는 수원 화성을 왜 지었어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "정조는 수원 화성을 왜 지었어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "정조는 수원 화성을 왜 지었",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "정조는 수원 화성을 왜 지었",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "정조는 수원 화성을 왜 지었",
+     "filters": {
+      "king_name": "정조"
+     },
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "필터 + 키워드 검색",
+     "keywords": "화성",
+     "route": "A",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "keyword",
+     "status": "running",
+     "title": "필터 범위 안에서 본문 키워드 검색",
+     "tokens": [
+      "화성"
+     ],
+     "elapsed_ms": 2230
+    },
+    {
+     "stage": "keyword",
+     "status": "done",
+     "title": "본문 키워드 검색",
+     "count": 6,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 2730
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2810
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample03",
+       "rank": 1,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 2,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 3,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 4,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 5,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 6,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 7,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3710
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3800
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 9,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3960
+    },
+    {
+     "stage": "sort",
+     "status": "done",
+     "title": "기록을 시간순으로 정렬",
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4140
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4220
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4290
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6890
+    }
+   ],
+   "elapsed_ms": 7010,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "태종은 어떤 왕이었어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "태종은 어떤 왕이었어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "태종은 떤 왕이었",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "태종은 떤 왕이었",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "태종은 떤 왕이었",
+     "filters": {
+      "king_name": "태종"
+     },
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "메타데이터 필터 검색",
+     "route": "B",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "scan",
+     "status": "running",
+     "title": "메타데이터 조건으로 실록 검색",
+     "elapsed_ms": 2230
+    },
+    {
+     "stage": "scan",
+     "status": "done",
+     "title": "메타데이터 조건으로 실록 검색",
+     "count": 40,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 2930
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 3010
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample03",
+       "rank": 1,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 2,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 3,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 4,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 5,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 6,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 7,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3910
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 4000
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 9,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4160
+    },
+    {
+     "stage": "sort",
+     "status": "done",
+     "title": "기록을 시간순으로 정렬",
+     "elapsed_ms": 4230
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4340
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4420
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4490
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 7090
+    }
+   ],
+   "elapsed_ms": 7210,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  },
+  {
+   "question": "조선시대 과거 시험은 어떻게 봤어?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "조선시대 과거 시험은 어떻게 봤어?",
+     "elapsed_ms": 110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "elapsed_ms": 190
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "elapsed_ms": 1590
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "InternalDatabaseSearch",
+     "query": "조선시대 과거 시험은 떻게 봤",
+     "elapsed_ms": 1650
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "조선시대 과거 시험은 떻게 봤",
+     "elapsed_ms": 1740
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "elapsed_ms": 1960
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "조선시대 과거 시험은 떻게 봤",
+     "filters": {},
+     "elapsed_ms": 2100
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "elapsed_ms": 2170
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "elapsed_ms": 2250
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3150
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "Okt",
+     "tokens": [
+      "조선시대",
+      "과거",
+      "시험은"
+     ],
+     "elapsed_ms": 3210
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "elapsed_ms": 3270
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "sample04",
+       "rank": 1,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 2,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 3,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 4,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 5,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample09",
+       "rank": 6,
+       "title": "(예시) 실록 기록 9",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample10",
+       "rank": 7,
+       "title": "(예시) 실록 기록 10",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample11",
+       "rank": 8,
+       "title": "(예시) 실록 기록 11",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3670
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "elapsed_ms": 3760
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 12,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample06",
+       "rank": 6,
+       "title": "(예시) 실록 기록 6",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample07",
+       "rank": 7,
+       "title": "(예시) 실록 기록 7",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample08",
+       "rank": 8,
+       "title": "(예시) 실록 기록 8",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 3920
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 5,
+     "documents": [
+      {
+       "id": "sample01",
+       "rank": 1,
+       "title": "(예시) 실록 기록 1",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample02",
+       "rank": 2,
+       "title": "(예시) 실록 기록 2",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample03",
+       "rank": 3,
+       "title": "(예시) 실록 기록 3",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample04",
+       "rank": 4,
+       "title": "(예시) 실록 기록 4",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      },
+      {
+       "id": "sample05",
+       "rank": 5,
+       "title": "(예시) 실록 기록 5",
+       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+      }
+     ],
+     "elapsed_ms": 4030
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "InternalDatabaseSearch",
+     "elapsed_ms": 4110
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "elapsed_ms": 4180
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "elapsed_ms": 6780
+    }
+   ],
+   "elapsed_ms": 6900,
+   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+  }
+ ]
+}
