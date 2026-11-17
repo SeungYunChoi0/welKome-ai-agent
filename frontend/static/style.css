@@ -1725,10 +1725,11 @@ body {
   transform: translateY(4px);
 }
 
-/* 휴대폰 크게(본인 요청 2026-11-18): 모양은 그대로 두고 통째로 1.2배 */
+/* 휴대폰 크게(본인 요청 2026-11-18): 모양은 그대로 두고 통째로 1.25배.
+   852px × 1.25 ≈ 1065px — 1080px 판 높이 안에 들어가는 한계 */
 .app {
-  grid-template-columns: 472px minmax(0, 1fr);
-  column-gap: 88px;
+  grid-template-columns: 492px minmax(0, 1fr);
+  column-gap: 72px;
   padding: 0 110px 0 120px;
 }
-.phone-frame { zoom: 1.2; }
+.phone-frame { zoom: 1.25; }
