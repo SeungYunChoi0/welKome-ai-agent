@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>welKome</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="/static/style.css?v=booth13">
+  <link rel="stylesheet" href="/static/style.css?v=booth13b">
   <link rel="stylesheet" href="/static/fonts/fonts.css?v=booth13">
   <script src="https://cdn.jsdelivr.net/npm/@twemoji/api@15.1.0/dist/twemoji.min.js" crossorigin="anonymous"></script>
 </head>
@@ -47,22 +47,19 @@
         </header>
 
         <main class="content content-main">
-          <div class="upload-block">
-            <div class="upload-container">
-              <label for="image-input" class="upload-label">
-
-                <span id="upload-instruction">탭하여 한국의 명소 사진 업로드하기</span>
-                <input type="file" id="image-input" accept="image/*" hidden>
-              </label>
-              <img id="image-preview" class="image-preview" alt="Preview">
+          <div id="place-picker" class="upload-block place-picker" role="region" aria-roledescription="carousel" aria-label="장소 사진 고르기">
+            <div class="pp-stage" tabindex="0">
+              <div class="pp-track"></div>
+              <button type="button" class="pp-btn pp-prev" aria-label="이전 장소"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+              <button type="button" class="pp-btn pp-next" aria-label="다음 장소"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
             </div>
+            <div class="pp-dots"></div>
           </div>
 
           <div id="main-desc-card" class="description-card">
             <h2 id="desc-title">환영합니다</h2>
             <p id="desc-text">
-              한국의 명소 사진을 올려주시면<br>장소의 정보와 추천 내용을 얻을 수 있습니다.<br><br>(예시) 경복궁은 서울특별시 종로구 사직로 161에 위치한 조선시대 궁궐 중 하나이자 사적
-              제117호에 등재된 유산입니다.
+              사진을 옆으로 넘겨 장소를 고르시면<br>장소의 정보와 실록 기록을 볼 수 있습니다.
             </p>
           </div>
 
@@ -180,7 +177,8 @@
   </div>
   <script src="/static/pipeline.js?v=booth13"></script>
   <script src="/static/demo.js?v=booth13"></script>
-  <script src="/static/script.js?v=booth13"></script>
+  <script src="/static/places.js?v=booth13b"></script>
+  <script src="/static/script.js?v=booth13b"></script>
   <script>
     function applyTwemoji(node) {
       twemoji.parse(node || document.body, {

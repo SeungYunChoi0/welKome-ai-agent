@@ -1,45 +1,51 @@
 {
- "sample": true,
- "note": "예시 데이터. tools/record_demo.py로 실제 기록을 만들면 바뀐다.",
+ "sample": false,
+ "recorded_at": "2026-11-18T00:20:09",
+ "server": "(기록에 쓴 임시 서버 주소는 지움)",
  "runs": [
   {
-   "question": "세종 때 훈민정음은 언제 만들어졌어?",
+   "question": "조선왕조실록에 ‘고양이’가 등장하는 기록이 있나요?",
    "events": [
     {
      "stage": "request",
      "status": "done",
      "title": "질문 접수",
-     "query": "세종 때 훈민정음은 언제 만들어졌어?",
-     "elapsed_ms": 110
+     "query": "조선왕조실록에 ‘고양이’가 등장하는 기록이 있나요?",
+     "seq": 1,
+     "elapsed_ms": 0
     },
     {
      "stage": "model",
      "status": "running",
      "title": "질문을 해석하고 검색 도구 선택",
      "turn": 1,
-     "elapsed_ms": 190
+     "seq": 2,
+     "elapsed_ms": 0
     },
     {
      "stage": "model",
      "status": "done",
      "title": "모델 응답 수신",
      "turn": 1,
-     "elapsed_ms": 1590
+     "seq": 3,
+     "elapsed_ms": 1177
     },
     {
      "stage": "tool",
      "status": "running",
      "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "세종 때 훈민정음은 언제 만들졌",
-     "elapsed_ms": 1650
+     "tool": "local-tools_InternalDatabaseSearch",
+     "query": "고양이",
+     "seq": 4,
+     "elapsed_ms": 1178
     },
     {
      "stage": "database",
      "status": "running",
      "title": "실록 인덱스 준비",
-     "query": "세종 때 훈민정음은 언제 만들졌",
-     "elapsed_ms": 1740
+     "query": "고양이",
+     "seq": 5,
+     "elapsed_ms": 1202
     },
     {
      "stage": "database",
@@ -47,406 +53,108 @@
      "title": "실록 인덱스 확인",
      "vector_available": true,
      "bm25_available": true,
-     "elapsed_ms": 1960
+     "seq": 6,
+     "elapsed_ms": 1202
     },
     {
      "stage": "query",
      "status": "done",
      "title": "검색어와 조건 분석",
-     "query": "세종 때 훈민정음은 언제 만들졌",
-     "filters": {
-      "king_name": "세종"
-     },
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "필터 + 키워드 검색",
-     "keywords": "훈민정음 창제",
-     "route": "A",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "keyword",
-     "status": "running",
-     "title": "필터 범위 안에서 본문 키워드 검색",
-     "tokens": [
-      "훈민정음",
-      "창제"
-     ],
-     "elapsed_ms": 2230
-    },
-    {
-     "stage": "keyword",
-     "status": "done",
-     "title": "본문 키워드 검색",
-     "count": 6,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 2730
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2810
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample03",
-       "rank": 1,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 2,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 3,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 4,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 5,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 6,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 7,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3710
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 3800
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 9,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3960
-    },
-    {
-     "stage": "sort",
-     "status": "done",
-     "title": "기록을 시간순으로 정렬",
-     "elapsed_ms": 4030
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4140
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4220
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4290
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 6890
-    }
-   ],
-   "elapsed_ms": 7010,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "경복궁은 언제 처음 지어졌어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "경복궁은 언제 처음 지어졌어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "경복궁은 언제 처음 지졌",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "경복궁은 언제 처음 지졌",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "경복궁은 언제 처음 지졌",
+     "query": "고양이",
      "filters": {},
-     "elapsed_ms": 2100
+     "temporal": false,
+     "seq": 7,
+     "elapsed_ms": 1204
     },
     {
      "stage": "route",
      "status": "done",
      "title": "벡터 + BM25 하이브리드 검색",
      "route": "C",
-     "elapsed_ms": 2170
+     "seq": 8,
+     "elapsed_ms": 1204
     },
     {
      "stage": "vector",
      "status": "running",
      "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2250
+     "seq": 9,
+     "elapsed_ms": 1208
     },
     {
      "stage": "vector",
      "status": "done",
      "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 10,
+     "count": 20,
      "documents": [
       {
-       "id": "sample01",
+       "id": "57a300961fb1",
        "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "숙종 · 1678년 5월",
+       "text": "홍천 땅에서 기형의 고양이가 나왔다."
       },
       {
-       "id": "sample02",
+       "id": "3f9abb9339aa",
        "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1417년 11월",
+       "text": "세자가 금빛 고양이를 구하려 하였다."
       },
       {
-       "id": "sample03",
+       "id": "91f856400a49",
        "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "숙종 · 1683년 6월",
+       "text": "동부 연지동 인가에서 고양이가 눈이 넷, 머리 코 입 귀가 둘인 새끼를 낳았다."
       },
       {
-       "id": "sample04",
+       "id": "6d79449a7b03",
        "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "명종 · 1561년 3월",
+       "text": "양이가 있었다."
       },
       {
-       "id": "sample05",
+       "id": "a4404bd57fa6",
        "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "영조 · 1736년 12월",
+       "text": "태묘(조선 시대의 왕실 사당)에서 납향(제사를 지낼 때 향을 올림)을 거행하는데 고양이가 들어 오니 묘사(사당)를 국문(조사)하게 하였다."
       },
       {
-       "id": "sample06",
+       "id": "99d7d35804f4",
        "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "광해군 · 1615년 12월",
+       "text": "정원의 남쪽 낭청(건물의 한 부분)에서 곡성(슬픈 소리) 같은 고양이 울음소리가 한참 들리다 그쳤다."
       },
       {
-       "id": "sample07",
+       "id": "8a6e47a579ed",
        "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정종 · 1399년 월",
+       "text": "까치가 종루 꼭대기에 깃들었다."
       },
       {
-       "id": "sample08",
+       "id": "599b25f8183e",
        "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "경종 · 1722년 5월",
+       "text": "개가 돈화문(궁궐의 문)에 들어왔다."
       }
      ],
-     "elapsed_ms": 3150
+     "seq": 10,
+     "elapsed_ms": 2347
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "seq": 11,
+     "elapsed_ms": 2347
     },
     {
      "stage": "tokenize",
      "status": "done",
-     "title": "Okt",
+     "title": "정규식 대체 토크나이저",
      "tokens": [
-      "경복궁은",
-      "언제",
-      "처음"
+      "고양"
      ],
-     "elapsed_ms": 3210
-    },
-    {
-     "stage": "bm25",
-     "status": "running",
-     "title": "BM25 키워드 검색",
-     "elapsed_ms": 3270
+     "seq": 12,
+     "elapsed_ms": 2365
     },
     {
      "stage": "bm25",
@@ -455,221 +163,263 @@
      "count": 10,
      "documents": [
       {
-       "id": "sample04",
+       "id": "0d5b32003620",
        "rank": 1,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "명종 · 1561년 11월",
+       "text": "면천, 서산, 고양에 천둥이 쳤다."
       },
       {
-       "id": "sample05",
+       "id": "22021fd83968",
        "rank": 2,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세조 · 1461년 3월",
+       "text": "한명회에게 경기의 고양 제언을 가서 살펴보게 하였다."
       },
       {
-       "id": "sample06",
+       "id": "9550003c8e13",
        "rank": 3,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1412년 10월",
+       "text": "고양(지명)에서 매사냥을 구경하였다."
       },
       {
-       "id": "sample07",
+       "id": "6e325fb331b9",
        "rank": 4,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1414년 윤9월",
+       "text": "상왕이 고양 등지에서 매사냥을 하였다."
       },
       {
-       "id": "sample08",
+       "id": "1e64cb2674e5",
        "rank": 5,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "중종 · 1515년 9월",
+       "text": "경기 파주와 고양 등에 지진이 일어났다."
       },
       {
-       "id": "sample09",
+       "id": "e677e607badc",
        "rank": 6,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "명종 · 1561년 4월",
+       "text": "경기 고양 등에 비와 우박이 섞여 내렸다."
       },
       {
-       "id": "sample10",
+       "id": "8d549a42eb37",
        "rank": 7,
-       "title": "(예시) 실록 기록 10",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세종 · 1419년 7월",
+       "text": "고양과 교하 등지의 벼가 여물지 않았다."
       },
       {
-       "id": "sample11",
+       "id": "fef94343d14b",
        "rank": 8,
-       "title": "(예시) 실록 기록 11",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세종 · 1441년 1월",
+       "text": "고양 현감 박준 등이 하직하였다."
       }
      ],
-     "elapsed_ms": 3670
+     "seq": 13,
+     "elapsed_ms": 2484
     },
     {
      "stage": "fusion",
      "status": "running",
      "title": "RRF 순위 통합",
-     "elapsed_ms": 3760
+     "seq": 14,
+     "elapsed_ms": 2485
     },
     {
      "stage": "fusion",
      "status": "done",
      "title": "RRF 순위 통합",
-     "count": 12,
+     "count": 20,
      "documents": [
       {
-       "id": "sample01",
+       "id": "57a300961fb1",
        "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "숙종 · 1678년 5월",
+       "text": "홍천 땅에서 기형의 고양이가 나왔다."
       },
       {
-       "id": "sample02",
+       "id": "0d5b32003620",
        "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "명종 · 1561년 11월",
+       "text": "면천, 서산, 고양에 천둥이 쳤다."
       },
       {
-       "id": "sample03",
+       "id": "3f9abb9339aa",
        "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1417년 11월",
+       "text": "세자가 금빛 고양이를 구하려 하였다."
       },
       {
-       "id": "sample04",
+       "id": "22021fd83968",
        "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세조 · 1461년 3월",
+       "text": "한명회에게 경기의 고양 제언을 가서 살펴보게 하였다."
       },
       {
-       "id": "sample05",
+       "id": "91f856400a49",
        "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "숙종 · 1683년 6월",
+       "text": "동부 연지동 인가에서 고양이가 눈이 넷, 머리 코 입 귀가 둘인 새끼를 낳았다."
       },
       {
-       "id": "sample06",
+       "id": "9550003c8e13",
        "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1412년 10월",
+       "text": "고양(지명)에서 매사냥을 구경하였다."
       },
       {
-       "id": "sample07",
+       "id": "6d79449a7b03",
        "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "명종 · 1561년 3월",
+       "text": "양이가 있었다."
       },
       {
-       "id": "sample08",
+       "id": "6e325fb331b9",
        "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1414년 윤9월",
+       "text": "상왕이 고양 등지에서 매사냥을 하였다."
       }
      ],
-     "elapsed_ms": 3920
+     "seq": 15,
+     "elapsed_ms": 2485
     },
     {
      "stage": "evidence",
      "status": "done",
      "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
+     "count": 10,
      "documents": [
       {
-       "id": "sample01",
+       "id": "57a300961fb1",
        "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "숙종 · 1678년 5월",
+       "text": "홍천 땅에서 기형의 고양이가 나왔다."
       },
       {
-       "id": "sample02",
+       "id": "0d5b32003620",
        "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "명종 · 1561년 11월",
+       "text": "면천, 서산, 고양에 천둥이 쳤다."
       },
       {
-       "id": "sample03",
+       "id": "3f9abb9339aa",
        "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "태종 · 1417년 11월",
+       "text": "세자가 금빛 고양이를 구하려 하였다."
       },
       {
-       "id": "sample04",
+       "id": "22021fd83968",
        "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세조 · 1461년 3월",
+       "text": "한명회에게 경기의 고양 제언을 가서 살펴보게 하였다."
       },
       {
-       "id": "sample05",
+       "id": "91f856400a49",
        "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "숙종 · 1683년 6월",
+       "text": "동부 연지동 인가에서 고양이가 눈이 넷, 머리 코 입 귀가 둘인 새끼를 낳았다."
+      },
+      {
+       "id": "9550003c8e13",
+       "rank": 6,
+       "title": "태종 · 1412년 10월",
+       "text": "고양(지명)에서 매사냥을 구경하였다."
+      },
+      {
+       "id": "6d79449a7b03",
+       "rank": 7,
+       "title": "명종 · 1561년 3월",
+       "text": "양이가 있었다."
+      },
+      {
+       "id": "6e325fb331b9",
+       "rank": 8,
+       "title": "태종 · 1414년 윤9월",
+       "text": "상왕이 고양 등지에서 매사냥을 하였다."
+      },
+      {
+       "id": "a4404bd57fa6",
+       "rank": 9,
+       "title": "영조 · 1736년 12월",
+       "text": "태묘(조선 시대의 왕실 사당)에서 납향(제사를 지낼 때 향을 올림)을 거행하는데 고양이가 들어 오니 묘사(사당)를 국문(조사)하게 하였다."
+      },
+      {
+       "id": "1e64cb2674e5",
+       "rank": 10,
+       "title": "중종 · 1515년 9월",
+       "text": "경기 파주와 고양 등에 지진이 일어났다."
       }
      ],
-     "elapsed_ms": 4030
+     "seq": 16,
+     "elapsed_ms": 2487
     },
     {
      "stage": "tool",
      "status": "done",
      "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4110
+     "tool": "local-tools_InternalDatabaseSearch",
+     "seq": 17,
+     "elapsed_ms": 2488
     },
     {
      "stage": "model",
      "status": "running",
      "title": "검색 근거로 답변 생성",
      "turn": 2,
-     "elapsed_ms": 4180
+     "seq": 18,
+     "elapsed_ms": 2488
     },
     {
      "stage": "model",
      "status": "done",
      "title": "모델 응답 수신",
      "turn": 2,
-     "elapsed_ms": 6780
+     "seq": 19,
+     "elapsed_ms": 5501
     }
    ],
-   "elapsed_ms": 6900,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+   "output": "『조선왕조실록』에는 고양이에 관련된 여러 기록이 있습니다. 예를 들어, 조선 제19대 숙종 재위 9년 서기 1683년 6월의 기록에 따르면, \"동부 연지동 인가에서 고양이가 눈이 넷, 머리 코 입 귀가 둘인 새끼를 낳았다\"고 합니다. 또한, 숙종 재위 4년 서기 1678년 5월에는 \"홍천 땅에서 기형의 고양이가 나왔다\"는 기록이 있습니다. 이러한 기록들은 고양이가 조선 시대에도 사람들의 관심을 받았던 동물 중 하나였음을 보여줍니다.",
+   "elapsed_ms": 5502
   },
   {
-   "question": "세종대왕의 건강은 어땠어?",
+   "question": "조선시대 암행어사는 실제로 어디까지 권한을 행사할 수 있었나요?",
    "events": [
     {
      "stage": "request",
      "status": "done",
      "title": "질문 접수",
-     "query": "세종대왕의 건강은 어땠어?",
-     "elapsed_ms": 110
+     "query": "조선시대 암행어사는 실제로 어디까지 권한을 행사할 수 있었나요?",
+     "seq": 1,
+     "elapsed_ms": 0
     },
     {
      "stage": "model",
      "status": "running",
      "title": "질문을 해석하고 검색 도구 선택",
      "turn": 1,
-     "elapsed_ms": 190
+     "seq": 2,
+     "elapsed_ms": 0
     },
     {
      "stage": "model",
      "status": "done",
      "title": "모델 응답 수신",
      "turn": 1,
-     "elapsed_ms": 1590
+     "seq": 3,
+     "elapsed_ms": 1222
     },
     {
      "stage": "tool",
      "status": "running",
      "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "세종대왕의 건강은 땠",
-     "elapsed_ms": 1650
+     "tool": "local-tools_InternalDatabaseSearch",
+     "query": "조선시대 암행어사 권한",
+     "seq": 4,
+     "elapsed_ms": 1223
     },
     {
      "stage": "database",
      "status": "running",
      "title": "실록 인덱스 준비",
-     "query": "세종대왕의 건강은 땠",
-     "elapsed_ms": 1740
+     "query": "조선시대 암행어사 권한",
+     "seq": 5,
+     "elapsed_ms": 1236
     },
     {
      "stage": "database",
@@ -677,2194 +427,110 @@
      "title": "실록 인덱스 확인",
      "vector_available": true,
      "bm25_available": true,
-     "elapsed_ms": 1960
+     "seq": 6,
+     "elapsed_ms": 1236
     },
     {
      "stage": "query",
      "status": "done",
      "title": "검색어와 조건 분석",
-     "query": "세종대왕의 건강은 땠",
-     "filters": {
-      "king_name": "세종"
-     },
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "필터 + 키워드 검색",
-     "keywords": "건강",
-     "route": "A",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "keyword",
-     "status": "running",
-     "title": "필터 범위 안에서 본문 키워드 검색",
-     "tokens": [
-      "건강"
-     ],
-     "elapsed_ms": 2230
-    },
-    {
-     "stage": "keyword",
-     "status": "done",
-     "title": "본문 키워드 검색",
-     "count": 6,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 2730
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2810
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample03",
-       "rank": 1,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 2,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 3,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 4,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 5,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 6,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 7,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3710
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 3800
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 9,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3960
-    },
-    {
-     "stage": "sort",
-     "status": "done",
-     "title": "기록을 시간순으로 정렬",
-     "elapsed_ms": 4030
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4140
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4220
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4290
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 6890
-    }
-   ],
-   "elapsed_ms": 7010,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "1452년에는 무슨 일이 있었어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "1452년에는 무슨 일이 있었어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "1452년에는 무슨 일이 있었",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "1452년에는 무슨 일이 있었",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "1452년에는 무슨 일이 있었",
-     "filters": {
-      "year_solar": 1452
-     },
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "메타데이터 필터 검색",
-     "route": "B",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "scan",
-     "status": "running",
-     "title": "메타데이터 조건으로 실록 검색",
-     "elapsed_ms": 2230
-    },
-    {
-     "stage": "scan",
-     "status": "done",
-     "title": "메타데이터 조건으로 실록 검색",
-     "count": 24,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3030
-    },
-    {
-     "stage": "sort",
-     "status": "done",
-     "title": "기록을 시간순으로 정렬",
-     "elapsed_ms": 3100
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3210
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 3290
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 3360
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 5960
-    }
-   ],
-   "elapsed_ms": 6080,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "장영실은 어떤 일을 했어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "장영실은 어떤 일을 했어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "장영실은 떤 일을 했",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "장영실은 떤 일을 했",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "장영실은 떤 일을 했",
+     "query": "조선시대 암행어사 권한",
      "filters": {},
-     "elapsed_ms": 2100
+     "temporal": false,
+     "seq": 7,
+     "elapsed_ms": 1237
     },
     {
      "stage": "route",
      "status": "done",
      "title": "벡터 + BM25 하이브리드 검색",
      "route": "C",
-     "elapsed_ms": 2170
+     "seq": 8,
+     "elapsed_ms": 1237
     },
     {
      "stage": "vector",
      "status": "running",
      "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2250
+     "seq": 9,
+     "elapsed_ms": 1241
     },
     {
      "stage": "vector",
      "status": "done",
      "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 10,
+     "count": 20,
      "documents": [
       {
-       "id": "sample01",
+       "id": "b478222126d0",
        "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "철종 · 1857년 12월",
+       "text": "충청좌도와 황해도의 암행 어사의 서계에 따라 수령들(지방 행정 책임자)에게 상벌을 내렸다."
       },
       {
-       "id": "sample02",
+       "id": "48daf0c17686",
        "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1788년 1월",
+       "text": "암행 어사(비밀리에 파견된 관리)가 사사로이 군관을 대동할 수 없게 하였다."
       },
       {
-       "id": "sample03",
+       "id": "db72f542a21c",
        "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "인조 · 1629년 2월",
+       "text": "관향사(조선시대의 관직) 성준구가 둔전(국가 소유의 농지) 별장(관리) 성풍렬 등을 포상하도록 아뢰었다(보고하였다). 암행 어사(비밀리에 파견된 관리) 심지원이 영월 군수(지방의 행정관) 신희손 등의 불법 행위를 치계(보고)하였다."
       },
       {
-       "id": "sample04",
+       "id": "0d478a2f8399",
        "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세종 · 1427년 4월",
+       "text": "야인들 중 내조할 자격을 지휘 이상으로 정하게 하였다."
       },
       {
-       "id": "sample05",
+       "id": "e583cf0489d5",
        "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "광해군 · 1621년 11월",
+       "text": "벌목(나무를 베는 일)을 담당하는 어사(조선 시대에 왕명을 받아 특별한 임무를 수행하던 관리) 변삼근에게 종운(운송 업무)과 벌목의 일을 맡기도록 명령하였다."
       },
       {
-       "id": "sample06",
+       "id": "83e1fe6c60a9",
        "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1781년 1월",
+       "text": "직무 수행에 소홀한 관서 암행 어사(조선 시대의 비밀 조사관) 유의를 종중(종친회) 추고(책임을 물음)하였다."
       },
       {
-       "id": "sample07",
+       "id": "5b98f2e98c53",
        "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1777년 6월",
+       "text": "경기 지역의 암행 어사(왕명을 받아 지방의 부정을 조사하는 관리) 이병모와 북한 산성의 어사 이경양의 보고에 따라 해당 관리들을 문책하였다(잘못을 꾸짖고 책임을 물었다). 병조 판서(군사 업무를 담당하는 최고 관직) 채제공을 체직시키고(직책에서 물러나게 하고) 이휘지로 대신하였다."
       },
       {
-       "id": "sample08",
+       "id": "08ac28c79daa",
        "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1783년 6월",
+       "text": "영남 어사(조선시대 지방을 감찰하는 관리) 심기태에게 암행 어사의 조건에 대해 알려주었다."
       }
      ],
-     "elapsed_ms": 3150
+     "seq": 10,
+     "elapsed_ms": 3444
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "seq": 11,
+     "elapsed_ms": 3445
     },
     {
      "stage": "tokenize",
      "status": "done",
-     "title": "Okt",
-     "tokens": [
-      "장영실은",
-      "떤",
-      "일을"
-     ],
-     "elapsed_ms": 3210
-    },
-    {
-     "stage": "bm25",
-     "status": "running",
-     "title": "BM25 키워드 검색",
-     "elapsed_ms": 3270
-    },
-    {
-     "stage": "bm25",
-     "status": "done",
-     "title": "BM25 키워드 검색",
-     "count": 10,
-     "documents": [
-      {
-       "id": "sample04",
-       "rank": 1,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 2,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 3,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 4,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 5,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 6,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample10",
-       "rank": 7,
-       "title": "(예시) 실록 기록 10",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample11",
-       "rank": 8,
-       "title": "(예시) 실록 기록 11",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3670
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 3760
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3920
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4030
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4180
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 6780
-    }
-   ],
-   "elapsed_ms": 6900,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "조선시대에 전염병이 퍼지면 어떻게 했어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "조선시대에 전염병이 퍼지면 어떻게 했어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "조선시대에 전염병이 퍼지면 떻게 했",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "조선시대에 전염병이 퍼지면 떻게 했",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "조선시대에 전염병이 퍼지면 떻게 했",
-     "filters": {},
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "벡터 + BM25 하이브리드 검색",
-     "route": "C",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2250
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 10,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3150
-    },
-    {
-     "stage": "tokenize",
-     "status": "done",
-     "title": "Okt",
-     "tokens": [
-      "조선시대에",
-      "전염병이",
-      "퍼지면"
-     ],
-     "elapsed_ms": 3210
-    },
-    {
-     "stage": "bm25",
-     "status": "running",
-     "title": "BM25 키워드 검색",
-     "elapsed_ms": 3270
-    },
-    {
-     "stage": "bm25",
-     "status": "done",
-     "title": "BM25 키워드 검색",
-     "count": 10,
-     "documents": [
-      {
-       "id": "sample04",
-       "rank": 1,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 2,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 3,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 4,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 5,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 6,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample10",
-       "rank": 7,
-       "title": "(예시) 실록 기록 10",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample11",
-       "rank": 8,
-       "title": "(예시) 실록 기록 11",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3670
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 3760
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3920
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4030
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4180
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 6780
-    }
-   ],
-   "elapsed_ms": 6900,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "측우기는 언제 만들어졌어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "측우기는 언제 만들어졌어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "측우기는 언제 만들졌",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "측우기는 언제 만들졌",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "측우기는 언제 만들졌",
-     "filters": {},
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "벡터 + BM25 하이브리드 검색",
-     "route": "C",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2250
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 10,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3150
-    },
-    {
-     "stage": "tokenize",
-     "status": "done",
-     "title": "Okt",
-     "tokens": [
-      "측우기는",
-      "언제",
-      "만들졌"
-     ],
-     "elapsed_ms": 3210
-    },
-    {
-     "stage": "bm25",
-     "status": "running",
-     "title": "BM25 키워드 검색",
-     "elapsed_ms": 3270
-    },
-    {
-     "stage": "bm25",
-     "status": "done",
-     "title": "BM25 키워드 검색",
-     "count": 10,
-     "documents": [
-      {
-       "id": "sample04",
-       "rank": 1,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 2,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 3,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 4,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 5,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 6,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample10",
-       "rank": 7,
-       "title": "(예시) 실록 기록 10",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample11",
-       "rank": 8,
-       "title": "(예시) 실록 기록 11",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3670
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 3760
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3920
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4030
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4180
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 6780
-    }
-   ],
-   "elapsed_ms": 6900,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "정조는 수원 화성을 왜 지었어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "정조는 수원 화성을 왜 지었어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "정조는 수원 화성을 왜 지었",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "정조는 수원 화성을 왜 지었",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "정조는 수원 화성을 왜 지었",
-     "filters": {
-      "king_name": "정조"
-     },
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "필터 + 키워드 검색",
-     "keywords": "화성",
-     "route": "A",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "keyword",
-     "status": "running",
-     "title": "필터 범위 안에서 본문 키워드 검색",
-     "tokens": [
-      "화성"
-     ],
-     "elapsed_ms": 2230
-    },
-    {
-     "stage": "keyword",
-     "status": "done",
-     "title": "본문 키워드 검색",
-     "count": 6,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 2730
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2810
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample03",
-       "rank": 1,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 2,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 3,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 4,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 5,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 6,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 7,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3710
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 3800
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 9,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3960
-    },
-    {
-     "stage": "sort",
-     "status": "done",
-     "title": "기록을 시간순으로 정렬",
-     "elapsed_ms": 4030
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4140
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4220
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4290
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 6890
-    }
-   ],
-   "elapsed_ms": 7010,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "태종은 어떤 왕이었어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "태종은 어떤 왕이었어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "태종은 떤 왕이었",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "태종은 떤 왕이었",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "태종은 떤 왕이었",
-     "filters": {
-      "king_name": "태종"
-     },
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "메타데이터 필터 검색",
-     "route": "B",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "scan",
-     "status": "running",
-     "title": "메타데이터 조건으로 실록 검색",
-     "elapsed_ms": 2230
-    },
-    {
-     "stage": "scan",
-     "status": "done",
-     "title": "메타데이터 조건으로 실록 검색",
-     "count": 40,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 2930
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 3010
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 12,
-     "documents": [
-      {
-       "id": "sample03",
-       "rank": 1,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 2,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 3,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 4,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 5,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 6,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample09",
-       "rank": 7,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3910
-    },
-    {
-     "stage": "fusion",
-     "status": "running",
-     "title": "RRF 순위 통합",
-     "elapsed_ms": 4000
-    },
-    {
-     "stage": "fusion",
-     "status": "done",
-     "title": "RRF 순위 통합",
-     "count": 9,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4160
-    },
-    {
-     "stage": "sort",
-     "status": "done",
-     "title": "기록을 시간순으로 정렬",
-     "elapsed_ms": 4230
-    },
-    {
-     "stage": "evidence",
-     "status": "done",
-     "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 4340
-    },
-    {
-     "stage": "tool",
-     "status": "done",
-     "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4420
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "검색 근거로 답변 생성",
-     "turn": 2,
-     "elapsed_ms": 4490
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 2,
-     "elapsed_ms": 7090
-    }
-   ],
-   "elapsed_ms": 7210,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
-  },
-  {
-   "question": "조선시대 과거 시험은 어떻게 봤어?",
-   "events": [
-    {
-     "stage": "request",
-     "status": "done",
-     "title": "질문 접수",
-     "query": "조선시대 과거 시험은 어떻게 봤어?",
-     "elapsed_ms": 110
-    },
-    {
-     "stage": "model",
-     "status": "running",
-     "title": "질문을 해석하고 검색 도구 선택",
-     "turn": 1,
-     "elapsed_ms": 190
-    },
-    {
-     "stage": "model",
-     "status": "done",
-     "title": "모델 응답 수신",
-     "turn": 1,
-     "elapsed_ms": 1590
-    },
-    {
-     "stage": "tool",
-     "status": "running",
-     "title": "검색 도구 실행",
-     "tool": "InternalDatabaseSearch",
-     "query": "조선시대 과거 시험은 떻게 봤",
-     "elapsed_ms": 1650
-    },
-    {
-     "stage": "database",
-     "status": "running",
-     "title": "실록 인덱스 준비",
-     "query": "조선시대 과거 시험은 떻게 봤",
-     "elapsed_ms": 1740
-    },
-    {
-     "stage": "database",
-     "status": "done",
-     "title": "실록 인덱스 확인",
-     "vector_available": true,
-     "bm25_available": true,
-     "elapsed_ms": 1960
-    },
-    {
-     "stage": "query",
-     "status": "done",
-     "title": "검색어와 조건 분석",
-     "query": "조선시대 과거 시험은 떻게 봤",
-     "filters": {},
-     "elapsed_ms": 2100
-    },
-    {
-     "stage": "route",
-     "status": "done",
-     "title": "벡터 + BM25 하이브리드 검색",
-     "route": "C",
-     "elapsed_ms": 2170
-    },
-    {
-     "stage": "vector",
-     "status": "running",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "elapsed_ms": 2250
-    },
-    {
-     "stage": "vector",
-     "status": "done",
-     "title": "BGE-M3 · FAISS 벡터 검색",
-     "count": 10,
-     "documents": [
-      {
-       "id": "sample01",
-       "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample02",
-       "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample03",
-       "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample04",
-       "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample05",
-       "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample06",
-       "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample07",
-       "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      },
-      {
-       "id": "sample08",
-       "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
-      }
-     ],
-     "elapsed_ms": 3150
-    },
-    {
-     "stage": "tokenize",
-     "status": "done",
-     "title": "Okt",
+     "title": "정규식 대체 토크나이저",
      "tokens": [
       "조선시대",
-      "과거",
-      "시험은"
+      "암행어사",
+      "권한"
      ],
-     "elapsed_ms": 3210
-    },
-    {
-     "stage": "bm25",
-     "status": "running",
-     "title": "BM25 키워드 검색",
-     "elapsed_ms": 3270
+     "seq": 12,
+     "elapsed_ms": 3475
     },
     {
      "stage": "bm25",
@@ -2873,182 +539,1304 @@
      "count": 10,
      "documents": [
       {
-       "id": "sample04",
+       "id": "96b7eaa321a3",
        "rank": 1,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세조 · 1461년 3월",
+       "text": "송처관과 권한에게 관직을 제수하였다."
       },
       {
-       "id": "sample05",
+       "id": "60cab619f112",
        "rank": 2,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "헌종 · 1835년 1월",
+       "text": "도당(조선시대의 지방 행정 기관) 회권(회의를 열어 권한을 행사함)을 행하고 4점을 얻은 30인을 뽑았다."
       },
       {
-       "id": "sample06",
+       "id": "98142a4fab4d",
        "rank": 3,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "영조 · 1725년 8월",
+       "text": "진휼 문제를 암행어사(비밀리에 파견되어 감찰하는 관리)에게 특별 유시(명령함)하였다."
       },
       {
-       "id": "sample07",
+       "id": "6cdfbb4272e2",
        "rank": 4,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1777년 8월",
+       "text": "수찬(조선시대의 관직) 임시철이 상소하여 전일 회권(과거의 잘못된 권한)을 파하고 다시 회권할 것을 아뢰었다."
       },
       {
-       "id": "sample08",
+       "id": "0cb2c99a8ebb",
        "rank": 5,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "순조 · 1809년 2월",
+       "text": "문형의 회권(권한을 다시 행사함)을 행하였다."
       },
       {
-       "id": "sample09",
+       "id": "f17f01f6024e",
        "rank": 6,
-       "title": "(예시) 실록 기록 9",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "헌종 · 1840년 8월",
+       "text": "황해도 암행어사(왕명을 받고 지방을 비밀리에 순찰하며 감찰하는 관리) 심돈영의 서계(보고서)에 따라 윤행정 등에게 죄를 주었다."
       },
       {
-       "id": "sample10",
+       "id": "2e0fcbcd75b4",
        "rank": 7,
-       "title": "(예시) 실록 기록 10",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세종 · 1428년 11월",
+       "text": "한성부에서 노비의 가사와 자산을 결단하는 권한을 주도록 건의하였다."
       },
       {
-       "id": "sample11",
+       "id": "9ce106c8351f",
        "rank": 8,
-       "title": "(예시) 실록 기록 11",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "성종 · 1483년 7월",
+       "text": "대신들을 불러 정사의 권한과 송영의 일 등을 묻고 대간들은 직임에 나가라고 하였다."
       }
      ],
-     "elapsed_ms": 3670
+     "seq": 13,
+     "elapsed_ms": 3628
     },
     {
      "stage": "fusion",
      "status": "running",
      "title": "RRF 순위 통합",
-     "elapsed_ms": 3760
+     "seq": 14,
+     "elapsed_ms": 3629
     },
     {
      "stage": "fusion",
      "status": "done",
      "title": "RRF 순위 통합",
-     "count": 12,
+     "count": 20,
      "documents": [
       {
-       "id": "sample01",
+       "id": "f17f01f6024e",
        "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "헌종 · 1840년 8월",
+       "text": "황해도 암행어사(왕명을 받고 지방을 비밀리에 순찰하며 감찰하는 관리) 심돈영의 서계(보고서)에 따라 윤행정 등에게 죄를 주었다."
       },
       {
-       "id": "sample02",
+       "id": "b478222126d0",
        "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "철종 · 1857년 12월",
+       "text": "충청좌도와 황해도의 암행 어사의 서계에 따라 수령들(지방 행정 책임자)에게 상벌을 내렸다."
       },
       {
-       "id": "sample03",
+       "id": "96b7eaa321a3",
        "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세조 · 1461년 3월",
+       "text": "송처관과 권한에게 관직을 제수하였다."
       },
       {
-       "id": "sample04",
+       "id": "48daf0c17686",
        "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1788년 1월",
+       "text": "암행 어사(비밀리에 파견된 관리)가 사사로이 군관을 대동할 수 없게 하였다."
       },
       {
-       "id": "sample05",
+       "id": "60cab619f112",
        "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "헌종 · 1835년 1월",
+       "text": "도당(조선시대의 지방 행정 기관) 회권(회의를 열어 권한을 행사함)을 행하고 4점을 얻은 30인을 뽑았다."
       },
       {
-       "id": "sample06",
+       "id": "db72f542a21c",
        "rank": 6,
-       "title": "(예시) 실록 기록 6",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "인조 · 1629년 2월",
+       "text": "관향사(조선시대의 관직) 성준구가 둔전(국가 소유의 농지) 별장(관리) 성풍렬 등을 포상하도록 아뢰었다(보고하였다). 암행 어사(비밀리에 파견된 관리) 심지원이 영월 군수(지방의 행정관) 신희손 등의 불법 행위를 치계(보고)하였다."
       },
       {
-       "id": "sample07",
+       "id": "98142a4fab4d",
        "rank": 7,
-       "title": "(예시) 실록 기록 7",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "영조 · 1725년 8월",
+       "text": "진휼 문제를 암행어사(비밀리에 파견되어 감찰하는 관리)에게 특별 유시(명령함)하였다."
       },
       {
-       "id": "sample08",
+       "id": "0d478a2f8399",
        "rank": 8,
-       "title": "(예시) 실록 기록 8",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세종 · 1427년 4월",
+       "text": "야인들 중 내조할 자격을 지휘 이상으로 정하게 하였다."
       }
      ],
-     "elapsed_ms": 3920
+     "seq": 15,
+     "elapsed_ms": 3629
     },
     {
      "stage": "evidence",
      "status": "done",
      "title": "생성 모델에 전달할 실록 기록",
-     "count": 5,
+     "count": 10,
      "documents": [
       {
-       "id": "sample01",
+       "id": "f17f01f6024e",
        "rank": 1,
-       "title": "(예시) 실록 기록 1",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "헌종 · 1840년 8월",
+       "text": "황해도 암행어사(왕명을 받고 지방을 비밀리에 순찰하며 감찰하는 관리) 심돈영의 서계(보고서)에 따라 윤행정 등에게 죄를 주었다."
       },
       {
-       "id": "sample02",
+       "id": "b478222126d0",
        "rank": 2,
-       "title": "(예시) 실록 기록 2",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "철종 · 1857년 12월",
+       "text": "충청좌도와 황해도의 암행 어사의 서계에 따라 수령들(지방 행정 책임자)에게 상벌을 내렸다."
       },
       {
-       "id": "sample03",
+       "id": "96b7eaa321a3",
        "rank": 3,
-       "title": "(예시) 실록 기록 3",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "세조 · 1461년 3월",
+       "text": "송처관과 권한에게 관직을 제수하였다."
       },
       {
-       "id": "sample04",
+       "id": "48daf0c17686",
        "rank": 4,
-       "title": "(예시) 실록 기록 4",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "정조 · 1788년 1월",
+       "text": "암행 어사(비밀리에 파견된 관리)가 사사로이 군관을 대동할 수 없게 하였다."
       },
       {
-       "id": "sample05",
+       "id": "60cab619f112",
        "rank": 5,
-       "title": "(예시) 실록 기록 5",
-       "text": "(예시) 실제 기록 파일을 넣으면 검색된 실록 본문 일부가 여기에 나타납니다."
+       "title": "헌종 · 1835년 1월",
+       "text": "도당(조선시대의 지방 행정 기관) 회권(회의를 열어 권한을 행사함)을 행하고 4점을 얻은 30인을 뽑았다."
+      },
+      {
+       "id": "db72f542a21c",
+       "rank": 6,
+       "title": "인조 · 1629년 2월",
+       "text": "관향사(조선시대의 관직) 성준구가 둔전(국가 소유의 농지) 별장(관리) 성풍렬 등을 포상하도록 아뢰었다(보고하였다). 암행 어사(비밀리에 파견된 관리) 심지원이 영월 군수(지방의 행정관) 신희손 등의 불법 행위를 치계(보고)하였다."
+      },
+      {
+       "id": "98142a4fab4d",
+       "rank": 7,
+       "title": "영조 · 1725년 8월",
+       "text": "진휼 문제를 암행어사(비밀리에 파견되어 감찰하는 관리)에게 특별 유시(명령함)하였다."
+      },
+      {
+       "id": "0d478a2f8399",
+       "rank": 8,
+       "title": "세종 · 1427년 4월",
+       "text": "야인들 중 내조할 자격을 지휘 이상으로 정하게 하였다."
+      },
+      {
+       "id": "6cdfbb4272e2",
+       "rank": 9,
+       "title": "정조 · 1777년 8월",
+       "text": "수찬(조선시대의 관직) 임시철이 상소하여 전일 회권(과거의 잘못된 권한)을 파하고 다시 회권할 것을 아뢰었다."
+      },
+      {
+       "id": "e583cf0489d5",
+       "rank": 10,
+       "title": "광해군 · 1621년 11월",
+       "text": "벌목(나무를 베는 일)을 담당하는 어사(조선 시대에 왕명을 받아 특별한 임무를 수행하던 관리) 변삼근에게 종운(운송 업무)과 벌목의 일을 맡기도록 명령하였다."
       }
      ],
-     "elapsed_ms": 4030
+     "seq": 16,
+     "elapsed_ms": 3633
     },
     {
      "stage": "tool",
      "status": "done",
      "title": "도구 결과 수신",
-     "tool": "InternalDatabaseSearch",
-     "elapsed_ms": 4110
+     "tool": "local-tools_InternalDatabaseSearch",
+     "seq": 17,
+     "elapsed_ms": 3635
     },
     {
      "stage": "model",
      "status": "running",
      "title": "검색 근거로 답변 생성",
      "turn": 2,
-     "elapsed_ms": 4180
+     "seq": 18,
+     "elapsed_ms": 3635
     },
     {
      "stage": "model",
      "status": "done",
      "title": "모델 응답 수신",
      "turn": 2,
-     "elapsed_ms": 6780
+     "seq": 19,
+     "elapsed_ms": 6971
     }
    ],
-   "elapsed_ms": 6900,
-   "output": "(예시 답변) 시연 화면 확인용 답변입니다.\n실제 서버에서 기록을 저장하면 실록이의 실제 답변과 검색된 실록 기록으로 바뀝니다."
+   "output": "『조선왕조실록』에 따르면, 조선 시대의 암행어사는 왕명에 따라 비밀리에 지방을 순찰하며 감찰하는 권한을 가졌습니다. 예를 들어, 헌종 6년(서기 1840년)에는 황해도의 암행어사 심돈영이 제출한 보고서에 따라 지방 관리들에게 처벌이 가해졌으며, 철종 8년(서기 1857년)에는 충청좌도와 황해도의 수령들에게 상벌이 내려졌습니다. 또한, 정조 12년(서기 1788년)부터는 암행어사가 사사로이 군관을 대동하지 못하게 하는 규정이 있었습니다. 이처럼 암행어사는 주로 지방의 행정과 관련된 감찰 업무를 수행하며, 왕의 명령에 따라 특정 임무를 수행할 수 있었습니다.",
+   "elapsed_ms": 6972
+  },
+  {
+   "question": "만약 사도세자가 왕이 되었다면 조선의 역사는 어떻게 달라졌을까요?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "만약 사도세자가 왕이 되었다면 조선의 역사는 어떻게 달라졌을까요?",
+     "seq": 1,
+     "elapsed_ms": 0
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "seq": 2,
+     "elapsed_ms": 0
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "seq": 3,
+     "elapsed_ms": 840
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "local-tools_InternalDatabaseSearch",
+     "query": "사도세자",
+     "seq": 4,
+     "elapsed_ms": 840
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "사도세자",
+     "seq": 5,
+     "elapsed_ms": 852
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "seq": 6,
+     "elapsed_ms": 852
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "사도세자",
+     "filters": {},
+     "temporal": false,
+     "seq": 7,
+     "elapsed_ms": 853
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "seq": 8,
+     "elapsed_ms": 853
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "seq": 9,
+     "elapsed_ms": 858
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 20,
+     "documents": [
+      {
+       "id": "65c1ed2fe673",
+       "rank": 1,
+       "title": "태종 · 1418년 1월",
+       "text": "왕세자가 사신을 연회하였다."
+      },
+      {
+       "id": "6c23dd9b1438",
+       "rank": 2,
+       "title": "영조 · 1729년 1월",
+       "text": "세자의 상에 백성을 번거롭게 하지 말 것을 삼도감(조선 시대의 특별 기구)의 도제조(책임자)에게 유시하다(명령하다). 초우제(장례 후 첫 번째 제사)를 지내다."
+      },
+      {
+       "id": "3d8805d2cf31",
+       "rank": 3,
+       "title": "세종 · 1449년 11월",
+       "text": "세자의 병으로 인해 도죄 이하의 죄인을 사면하였다."
+      },
+      {
+       "id": "4a0253e16dcb",
+       "rank": 4,
+       "title": "세종 · 1425년 윤7월",
+       "text": "세자가 하마연을 행하였다."
+      },
+      {
+       "id": "584694622a6a",
+       "rank": 5,
+       "title": "현종 · 1669년 1월",
+       "text": "송시열이 세자부(세자의 스승)로서 상견례(처음 만나는 의식)를 행하였다."
+      },
+      {
+       "id": "a76f52c8dc3d",
+       "rank": 6,
+       "title": "세종 · 1445년 2월",
+       "text": "세자가 대내전에서 보낸 사신 소오고를 인견하였다."
+      },
+      {
+       "id": "001669bf4a72",
+       "rank": 7,
+       "title": "태종 · 1418년 6월",
+       "text": "왕세자가 조계에 참여하였다."
+      },
+      {
+       "id": "1a5ab6cf9cfa",
+       "rank": 8,
+       "title": "세종 · 1443년 4월",
+       "text": "왕세자가 도승지 조서강 등을 인견(만남)하였다."
+      }
+     ],
+     "seq": 10,
+     "elapsed_ms": 1857
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "seq": 11,
+     "elapsed_ms": 1857
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "정규식 대체 토크나이저",
+     "tokens": [
+      "사도세자"
+     ],
+     "seq": 12,
+     "elapsed_ms": 1870
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 1,
+     "documents": [
+      {
+       "id": "1cf957be2682",
+       "rank": 1,
+       "title": "헌종 · 1839년 9월",
+       "text": "대동미(지방에서 거두어들이는 쌀)를 돈으로 대납(대신 납부함)하게 하고, 사도(왕의 아버지인 사도세자)를 배척한 권위(권력을 가진 사람)에게 관직을 포증(관직을 주어 위로함)하였다."
+      }
+     ],
+     "seq": 13,
+     "elapsed_ms": 1912
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "seq": 14,
+     "elapsed_ms": 1912
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 20,
+     "documents": [
+      {
+       "id": "65c1ed2fe673",
+       "rank": 1,
+       "title": "태종 · 1418년 1월",
+       "text": "왕세자가 사신을 연회하였다."
+      },
+      {
+       "id": "1cf957be2682",
+       "rank": 2,
+       "title": "헌종 · 1839년 9월",
+       "text": "대동미(지방에서 거두어들이는 쌀)를 돈으로 대납(대신 납부함)하게 하고, 사도(왕의 아버지인 사도세자)를 배척한 권위(권력을 가진 사람)에게 관직을 포증(관직을 주어 위로함)하였다."
+      },
+      {
+       "id": "6c23dd9b1438",
+       "rank": 3,
+       "title": "영조 · 1729년 1월",
+       "text": "세자의 상에 백성을 번거롭게 하지 말 것을 삼도감(조선 시대의 특별 기구)의 도제조(책임자)에게 유시하다(명령하다). 초우제(장례 후 첫 번째 제사)를 지내다."
+      },
+      {
+       "id": "3d8805d2cf31",
+       "rank": 4,
+       "title": "세종 · 1449년 11월",
+       "text": "세자의 병으로 인해 도죄 이하의 죄인을 사면하였다."
+      },
+      {
+       "id": "4a0253e16dcb",
+       "rank": 5,
+       "title": "세종 · 1425년 윤7월",
+       "text": "세자가 하마연을 행하였다."
+      },
+      {
+       "id": "584694622a6a",
+       "rank": 6,
+       "title": "현종 · 1669년 1월",
+       "text": "송시열이 세자부(세자의 스승)로서 상견례(처음 만나는 의식)를 행하였다."
+      },
+      {
+       "id": "a76f52c8dc3d",
+       "rank": 7,
+       "title": "세종 · 1445년 2월",
+       "text": "세자가 대내전에서 보낸 사신 소오고를 인견하였다."
+      },
+      {
+       "id": "001669bf4a72",
+       "rank": 8,
+       "title": "태종 · 1418년 6월",
+       "text": "왕세자가 조계에 참여하였다."
+      }
+     ],
+     "seq": 15,
+     "elapsed_ms": 1914
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 10,
+     "documents": [
+      {
+       "id": "65c1ed2fe673",
+       "rank": 1,
+       "title": "태종 · 1418년 1월",
+       "text": "왕세자가 사신을 연회하였다."
+      },
+      {
+       "id": "1cf957be2682",
+       "rank": 2,
+       "title": "헌종 · 1839년 9월",
+       "text": "대동미(지방에서 거두어들이는 쌀)를 돈으로 대납(대신 납부함)하게 하고, 사도(왕의 아버지인 사도세자)를 배척한 권위(권력을 가진 사람)에게 관직을 포증(관직을 주어 위로함)하였다."
+      },
+      {
+       "id": "6c23dd9b1438",
+       "rank": 3,
+       "title": "영조 · 1729년 1월",
+       "text": "세자의 상에 백성을 번거롭게 하지 말 것을 삼도감(조선 시대의 특별 기구)의 도제조(책임자)에게 유시하다(명령하다). 초우제(장례 후 첫 번째 제사)를 지내다."
+      },
+      {
+       "id": "3d8805d2cf31",
+       "rank": 4,
+       "title": "세종 · 1449년 11월",
+       "text": "세자의 병으로 인해 도죄 이하의 죄인을 사면하였다."
+      },
+      {
+       "id": "4a0253e16dcb",
+       "rank": 5,
+       "title": "세종 · 1425년 윤7월",
+       "text": "세자가 하마연을 행하였다."
+      },
+      {
+       "id": "584694622a6a",
+       "rank": 6,
+       "title": "현종 · 1669년 1월",
+       "text": "송시열이 세자부(세자의 스승)로서 상견례(처음 만나는 의식)를 행하였다."
+      },
+      {
+       "id": "a76f52c8dc3d",
+       "rank": 7,
+       "title": "세종 · 1445년 2월",
+       "text": "세자가 대내전에서 보낸 사신 소오고를 인견하였다."
+      },
+      {
+       "id": "001669bf4a72",
+       "rank": 8,
+       "title": "태종 · 1418년 6월",
+       "text": "왕세자가 조계에 참여하였다."
+      },
+      {
+       "id": "1a5ab6cf9cfa",
+       "rank": 9,
+       "title": "세종 · 1443년 4월",
+       "text": "왕세자가 도승지 조서강 등을 인견(만남)하였다."
+      },
+      {
+       "id": "9148fad686a0",
+       "rank": 10,
+       "title": "태종 · 1411년 9월",
+       "text": "세자에게 사신을 전송하게 하였다."
+      }
+     ],
+     "seq": 16,
+     "elapsed_ms": 1915
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "local-tools_InternalDatabaseSearch",
+     "seq": 17,
+     "elapsed_ms": 1915
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "seq": 18,
+     "elapsed_ms": 1915
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "seq": 19,
+     "elapsed_ms": 4100
+    }
+   ],
+   "output": "조선왕조실록 기록에서 사도세자가 만약 왕이 되었다면 조선의 역사가 어떻게 달라졌을지에 대한 직접적인 기록은 찾지 못했습니다. 사도세자는 영조의 아들로, 여러 복잡한 정치적 환경과 개인적 비극으로 인해 왕위에 오르지 못했습니다. 그의 비극적인 죽음은 그 후 왕위 계승과 정치적 변동에 큰 영향을 미쳤습니다. 사도세자가 왕이 되었더라면 그의 리더십 스타일과 정치적 비전이 바탕이 되어 당시 조선의 정책과 문화가 달라졌을 가능성이 있습니다. 그러나 이러한 가상 역사는 실록의 기록에 남아있지 않기에, 정확한 변화를 예측하기는 어렵습니다. 외부 정보를 통해 더 많은 내용을 알아보고 싶으시면 말씀해 주세요.",
+   "elapsed_ms": 4103
+  },
+  {
+   "question": "조선왕조실록에 기록된 1950년 6·25 전쟁에 대한 정보를 찾아주세요.",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "조선왕조실록에 기록된 1950년 6·25 전쟁에 대한 정보를 찾아주세요.",
+     "seq": 1,
+     "elapsed_ms": 0
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "seq": 2,
+     "elapsed_ms": 0
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "seq": 3,
+     "elapsed_ms": 1131
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "local-tools_InternalDatabaseSearch",
+     "query": "1950년 6·25 전쟁",
+     "seq": 4,
+     "elapsed_ms": 1131
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "1950년 6·25 전쟁",
+     "seq": 5,
+     "elapsed_ms": 1138
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "seq": 6,
+     "elapsed_ms": 1138
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "1950년 6·25 전쟁",
+     "filters": {},
+     "temporal": false,
+     "seq": 7,
+     "elapsed_ms": 1139
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "seq": 8,
+     "elapsed_ms": 1140
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "seq": 9,
+     "elapsed_ms": 1145
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 18,
+     "documents": [
+      {
+       "id": "3937b0b26136",
+       "rank": 1,
+       "title": "현종 · 1671년 3월",
+       "text": "여섯 도에 눈이 내렸다."
+      },
+      {
+       "id": "8d9f93063c57",
+       "rank": 2,
+       "title": "태종 · 1409년 윤4월",
+       "text": "혁거하였던 대장·대부 6백 50인을 다시 부대에 편입시켰습니다."
+      },
+      {
+       "id": "a24e1800eb99",
+       "rank": 3,
+       "title": "현종 · 1671년 1월",
+       "text": "경기 부평에서 50명이 물에 빠져 사망하였다."
+      },
+      {
+       "id": "d232ff35cf5c",
+       "rank": 4,
+       "title": "세조 · 1463년 11월",
+       "text": "평원 대군의 집에 쌀 50석과 말 1필을 주었다."
+      },
+      {
+       "id": "bd27e201df64",
+       "rank": 5,
+       "title": "성종 · 1479년 9월",
+       "text": "국기일이었다."
+      },
+      {
+       "id": "63d8d2fbc043",
+       "rank": 6,
+       "title": "연산군 · 1502년 7월",
+       "text": "전미 50석을 내수사로 보내도록 하였다."
+      },
+      {
+       "id": "29d68d848053",
+       "rank": 7,
+       "title": "인조 · 1624년 5월",
+       "text": "무기를 서쪽 변방에 보내었다."
+      },
+      {
+       "id": "e3b032fa15c1",
+       "rank": 8,
+       "title": "태종 · 1418년 3월",
+       "text": "5일과 6일에 육선을 들기를 허락하겠다고 전지하였다."
+      }
+     ],
+     "seq": 10,
+     "elapsed_ms": 1373
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "seq": 11,
+     "elapsed_ms": 1373
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "정규식 대체 토크나이저",
+     "tokens": [
+      "1950년",
+      "6·25",
+      "전쟁"
+     ],
+     "seq": 12,
+     "elapsed_ms": 1373
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "2e6fdf059ac0",
+       "rank": 1,
+       "title": "인조 · 1636년 6월",
+       "text": "금나라에 격문(전쟁을 알리는 글)을 보내었다."
+      },
+      {
+       "id": "13b108440fe2",
+       "rank": 2,
+       "title": "세조 · 1467년 10월",
+       "text": "전촉(전쟁에 쓰이는 촉) 1개를 꺼내 그대로 전폐(전쟁에 쓰이는 폐)를 만들 것을 사섬시에게 말하였다."
+      },
+      {
+       "id": "08e285d3b23b",
+       "rank": 3,
+       "title": "현종 · 1663년 4월",
+       "text": "웅천의 전선(전쟁터)에서 불이 났다."
+      },
+      {
+       "id": "2f2b57542bb4",
+       "rank": 4,
+       "title": "세종 · 1431년 8월",
+       "text": "등차랑이 구주의 전쟁에 관해 글을 올렸다."
+      },
+      {
+       "id": "8cb506ed2e4d",
+       "rank": 5,
+       "title": "광해군 · 1620년 1월",
+       "text": "병화(전쟁)를 막을 준비를 서두르라고 명령하였다."
+      },
+      {
+       "id": "990f39fc2199",
+       "rank": 6,
+       "title": "인조 · 1628년 5월",
+       "text": "함경도 전시(전쟁)를 치른 후에 승지가 오래 머물지 않도록 하였다."
+      },
+      {
+       "id": "a628a8ce5a1c",
+       "rank": 7,
+       "title": "인조 · 1636년 12월",
+       "text": "하교하여 전승(전쟁에서 이김)의 결의를 다지다."
+      },
+      {
+       "id": "b5779ac32bda",
+       "rank": 8,
+       "title": "세종 · 1441년 9월",
+       "text": "평안도에 해마다 전마(전쟁용 말) 30필을 보내게 하였다."
+      }
+     ],
+     "seq": 13,
+     "elapsed_ms": 1465
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "seq": 14,
+     "elapsed_ms": 1466
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 20,
+     "documents": [
+      {
+       "id": "3937b0b26136",
+       "rank": 1,
+       "title": "현종 · 1671년 3월",
+       "text": "여섯 도에 눈이 내렸다."
+      },
+      {
+       "id": "2e6fdf059ac0",
+       "rank": 2,
+       "title": "인조 · 1636년 6월",
+       "text": "금나라에 격문(전쟁을 알리는 글)을 보내었다."
+      },
+      {
+       "id": "8d9f93063c57",
+       "rank": 3,
+       "title": "태종 · 1409년 윤4월",
+       "text": "혁거하였던 대장·대부 6백 50인을 다시 부대에 편입시켰습니다."
+      },
+      {
+       "id": "13b108440fe2",
+       "rank": 4,
+       "title": "세조 · 1467년 10월",
+       "text": "전촉(전쟁에 쓰이는 촉) 1개를 꺼내 그대로 전폐(전쟁에 쓰이는 폐)를 만들 것을 사섬시에게 말하였다."
+      },
+      {
+       "id": "a24e1800eb99",
+       "rank": 5,
+       "title": "현종 · 1671년 1월",
+       "text": "경기 부평에서 50명이 물에 빠져 사망하였다."
+      },
+      {
+       "id": "08e285d3b23b",
+       "rank": 6,
+       "title": "현종 · 1663년 4월",
+       "text": "웅천의 전선(전쟁터)에서 불이 났다."
+      },
+      {
+       "id": "d232ff35cf5c",
+       "rank": 7,
+       "title": "세조 · 1463년 11월",
+       "text": "평원 대군의 집에 쌀 50석과 말 1필을 주었다."
+      },
+      {
+       "id": "2f2b57542bb4",
+       "rank": 8,
+       "title": "세종 · 1431년 8월",
+       "text": "등차랑이 구주의 전쟁에 관해 글을 올렸다."
+      }
+     ],
+     "seq": 15,
+     "elapsed_ms": 1466
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 10,
+     "documents": [
+      {
+       "id": "3937b0b26136",
+       "rank": 1,
+       "title": "현종 · 1671년 3월",
+       "text": "여섯 도에 눈이 내렸다."
+      },
+      {
+       "id": "2e6fdf059ac0",
+       "rank": 2,
+       "title": "인조 · 1636년 6월",
+       "text": "금나라에 격문(전쟁을 알리는 글)을 보내었다."
+      },
+      {
+       "id": "8d9f93063c57",
+       "rank": 3,
+       "title": "태종 · 1409년 윤4월",
+       "text": "혁거하였던 대장·대부 6백 50인을 다시 부대에 편입시켰습니다."
+      },
+      {
+       "id": "13b108440fe2",
+       "rank": 4,
+       "title": "세조 · 1467년 10월",
+       "text": "전촉(전쟁에 쓰이는 촉) 1개를 꺼내 그대로 전폐(전쟁에 쓰이는 폐)를 만들 것을 사섬시에게 말하였다."
+      },
+      {
+       "id": "a24e1800eb99",
+       "rank": 5,
+       "title": "현종 · 1671년 1월",
+       "text": "경기 부평에서 50명이 물에 빠져 사망하였다."
+      },
+      {
+       "id": "08e285d3b23b",
+       "rank": 6,
+       "title": "현종 · 1663년 4월",
+       "text": "웅천의 전선(전쟁터)에서 불이 났다."
+      },
+      {
+       "id": "d232ff35cf5c",
+       "rank": 7,
+       "title": "세조 · 1463년 11월",
+       "text": "평원 대군의 집에 쌀 50석과 말 1필을 주었다."
+      },
+      {
+       "id": "2f2b57542bb4",
+       "rank": 8,
+       "title": "세종 · 1431년 8월",
+       "text": "등차랑이 구주의 전쟁에 관해 글을 올렸다."
+      },
+      {
+       "id": "bd27e201df64",
+       "rank": 9,
+       "title": "성종 · 1479년 9월",
+       "text": "국기일이었다."
+      },
+      {
+       "id": "8cb506ed2e4d",
+       "rank": 10,
+       "title": "광해군 · 1620년 1월",
+       "text": "병화(전쟁)를 막을 준비를 서두르라고 명령하였다."
+      }
+     ],
+     "seq": 16,
+     "elapsed_ms": 1467
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "local-tools_InternalDatabaseSearch",
+     "seq": 17,
+     "elapsed_ms": 1468
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "seq": 18,
+     "elapsed_ms": 1468
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "seq": 19,
+     "elapsed_ms": 2753
+    }
+   ],
+   "output": "조선왕조실록에서는 1950년 6·25 전쟁에 대한 기록을 찾을 수 없습니다. 6·25 전쟁은 1950년에 있었던 현대사의 사건으로, 조선왕조실록은 조선 시대의 기록만을 담고 있기 때문입니다. 외부 웹 검색을 통해 더 많은 정보를 찾고 싶으시면 말씀해 주세요.",
+   "elapsed_ms": 2754
+  },
+  {
+   "question": "조선시대 궁궐이나 마을에 호랑이가 나타난 적이 있나요?",
+   "events": [
+    {
+     "stage": "request",
+     "status": "done",
+     "title": "질문 접수",
+     "query": "조선시대 궁궐이나 마을에 호랑이가 나타난 적이 있나요?",
+     "seq": 1,
+     "elapsed_ms": 0
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "질문을 해석하고 검색 도구 선택",
+     "turn": 1,
+     "seq": 2,
+     "elapsed_ms": 0
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 1,
+     "seq": 3,
+     "elapsed_ms": 831
+    },
+    {
+     "stage": "tool",
+     "status": "running",
+     "title": "검색 도구 실행",
+     "tool": "local-tools_InternalDatabaseSearch",
+     "query": "조선시대 궁궐 호랑이",
+     "seq": 4,
+     "elapsed_ms": 831
+    },
+    {
+     "stage": "database",
+     "status": "running",
+     "title": "실록 인덱스 준비",
+     "query": "조선시대 궁궐 호랑이",
+     "seq": 5,
+     "elapsed_ms": 834
+    },
+    {
+     "stage": "database",
+     "status": "done",
+     "title": "실록 인덱스 확인",
+     "vector_available": true,
+     "bm25_available": true,
+     "seq": 6,
+     "elapsed_ms": 834
+    },
+    {
+     "stage": "query",
+     "status": "done",
+     "title": "검색어와 조건 분석",
+     "query": "조선시대 궁궐 호랑이",
+     "filters": {},
+     "temporal": false,
+     "seq": 7,
+     "elapsed_ms": 834
+    },
+    {
+     "stage": "route",
+     "status": "done",
+     "title": "벡터 + BM25 하이브리드 검색",
+     "route": "C",
+     "seq": 8,
+     "elapsed_ms": 835
+    },
+    {
+     "stage": "vector",
+     "status": "running",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "seq": 9,
+     "elapsed_ms": 838
+    },
+    {
+     "stage": "vector",
+     "status": "done",
+     "title": "BGE-M3 · FAISS 벡터 검색",
+     "count": 20,
+     "documents": [
+      {
+       "id": "4288feb9a9d0",
+       "rank": 1,
+       "title": "인조 · 1626년 12월",
+       "text": "인왕산(서울의 산) 호랑이가 나타났다."
+      },
+      {
+       "id": "604f77607134",
+       "rank": 2,
+       "title": "정조 · 1780년 9월",
+       "text": "호조(조선 시대의 재정 담당 기관)에서 대궐(왕이 거주하는 궁궐) 수리를 청하자 대궐 감독을 담당한 낭관(조선 시대의 관리), 자문감(조선 시대의 궁궐 수리 담당 관리) 관원을 처벌하였다 차대하였다."
+      },
+      {
+       "id": "5a47f6bfec50",
+       "rank": 3,
+       "title": "정조 · 1777년 9월",
+       "text": "호랑이가 궁 밖 군보(군대의 병사)의 병졸을 물어 갔다."
+      },
+      {
+       "id": "2158c3e3590c",
+       "rank": 4,
+       "title": "세조 · 1463년 10월",
+       "text": "미륵동에서 호랑이를 잡고 환궁(궁으로 돌아옴)하였다."
+      },
+      {
+       "id": "df9ed3e489f7",
+       "rank": 5,
+       "title": "연산군 · 1506년 3월",
+       "text": "호랑이가 청파역리에 들어오니 충철위 등의 군인으로 잡게 하였다."
+      },
+      {
+       "id": "090e72f4fbf8",
+       "rank": 6,
+       "title": "세종 · 1443년 4월",
+       "text": "가뭄으로 호랑이 머리를 한강·박연·양진에 담그다."
+      },
+      {
+       "id": "0f436685dd93",
+       "rank": 7,
+       "title": "명종 · 1550년 10월",
+       "text": "관악사의 중(승려) 계은이 예궐(궁궐에 나아감)하여 호피(호랑이 가죽)를 바치니 상을 주도록 하였다."
+      },
+      {
+       "id": "ec0f04257714",
+       "rank": 8,
+       "title": "세조 · 1464년 5월",
+       "text": "녹양 목장의 말을 상하게 한 호랑이를 잡았다."
+      }
+     ],
+     "seq": 10,
+     "elapsed_ms": 1030
+    },
+    {
+     "stage": "bm25",
+     "status": "running",
+     "title": "BM25 키워드 검색",
+     "seq": 11,
+     "elapsed_ms": 1030
+    },
+    {
+     "stage": "tokenize",
+     "status": "done",
+     "title": "정규식 대체 토크나이저",
+     "tokens": [
+      "조선시대",
+      "궁궐",
+      "호랑"
+     ],
+     "seq": 12,
+     "elapsed_ms": 1049
+    },
+    {
+     "stage": "bm25",
+     "status": "done",
+     "title": "BM25 키워드 검색",
+     "count": 10,
+     "documents": [
+      {
+       "id": "1c02c1071f7a",
+       "rank": 1,
+       "title": "영조 · 1739년 10월",
+       "text": "창덕궁(조선시대의 궁궐)에 환어(왕이 궁궐로 돌아옴)하였다."
+      },
+      {
+       "id": "5942a4c7dba9",
+       "rank": 2,
+       "title": "명종 · 1557년 2월",
+       "text": "창덕궁(조선시대의 궁궐)에 행행(왕이 궁궐 밖으로 나감)하였다."
+      },
+      {
+       "id": "7f58c54d288b",
+       "rank": 3,
+       "title": "명종 · 1567년 6월",
+       "text": "창덕궁(조선시대의 궁궐)에서 거주하였다."
+      },
+      {
+       "id": "b9750877a7f0",
+       "rank": 4,
+       "title": "숙종 · 1684년 12월",
+       "text": "창경궁(조선시대의 궁궐) 요화당으로 이어하였다."
+      },
+      {
+       "id": "e9eceeca6da0",
+       "rank": 5,
+       "title": "순조 · 1810년 9월",
+       "text": "경희궁(조선시대의 궁궐)에 나아가 재숙(머무름)하였다."
+      },
+      {
+       "id": "bdc0ff99818b",
+       "rank": 6,
+       "title": "영조 · 1729년 7월",
+       "text": "박호랑, 박필주 등의 옥사에 관한 일을 국청의 대신들과 논의하였다."
+      },
+      {
+       "id": "721fa510ef62",
+       "rank": 7,
+       "title": "정조 · 1777년 8월",
+       "text": "채제공을 창경궁(조선시대의 궁궐) 수궁 대장(궁궐을 지키는 장수)으로 삼았다."
+      },
+      {
+       "id": "bf1a4c69a824",
+       "rank": 8,
+       "title": "정조 · 1777년 8월",
+       "text": "창덕궁(조선시대의 궁궐)으로 이어(왕이 거처를 옮김)하였다."
+      }
+     ],
+     "seq": 13,
+     "elapsed_ms": 1115
+    },
+    {
+     "stage": "fusion",
+     "status": "running",
+     "title": "RRF 순위 통합",
+     "seq": 14,
+     "elapsed_ms": 1115
+    },
+    {
+     "stage": "fusion",
+     "status": "done",
+     "title": "RRF 순위 통합",
+     "count": 20,
+     "documents": [
+      {
+       "id": "4288feb9a9d0",
+       "rank": 1,
+       "title": "인조 · 1626년 12월",
+       "text": "인왕산(서울의 산) 호랑이가 나타났다."
+      },
+      {
+       "id": "1c02c1071f7a",
+       "rank": 2,
+       "title": "영조 · 1739년 10월",
+       "text": "창덕궁(조선시대의 궁궐)에 환어(왕이 궁궐로 돌아옴)하였다."
+      },
+      {
+       "id": "604f77607134",
+       "rank": 3,
+       "title": "정조 · 1780년 9월",
+       "text": "호조(조선 시대의 재정 담당 기관)에서 대궐(왕이 거주하는 궁궐) 수리를 청하자 대궐 감독을 담당한 낭관(조선 시대의 관리), 자문감(조선 시대의 궁궐 수리 담당 관리) 관원을 처벌하였다 차대하였다."
+      },
+      {
+       "id": "5942a4c7dba9",
+       "rank": 4,
+       "title": "명종 · 1557년 2월",
+       "text": "창덕궁(조선시대의 궁궐)에 행행(왕이 궁궐 밖으로 나감)하였다."
+      },
+      {
+       "id": "5a47f6bfec50",
+       "rank": 5,
+       "title": "정조 · 1777년 9월",
+       "text": "호랑이가 궁 밖 군보(군대의 병사)의 병졸을 물어 갔다."
+      },
+      {
+       "id": "7f58c54d288b",
+       "rank": 6,
+       "title": "명종 · 1567년 6월",
+       "text": "창덕궁(조선시대의 궁궐)에서 거주하였다."
+      },
+      {
+       "id": "2158c3e3590c",
+       "rank": 7,
+       "title": "세조 · 1463년 10월",
+       "text": "미륵동에서 호랑이를 잡고 환궁(궁으로 돌아옴)하였다."
+      },
+      {
+       "id": "b9750877a7f0",
+       "rank": 8,
+       "title": "숙종 · 1684년 12월",
+       "text": "창경궁(조선시대의 궁궐) 요화당으로 이어하였다."
+      }
+     ],
+     "seq": 15,
+     "elapsed_ms": 1116
+    },
+    {
+     "stage": "evidence",
+     "status": "done",
+     "title": "생성 모델에 전달할 실록 기록",
+     "count": 10,
+     "documents": [
+      {
+       "id": "4288feb9a9d0",
+       "rank": 1,
+       "title": "인조 · 1626년 12월",
+       "text": "인왕산(서울의 산) 호랑이가 나타났다."
+      },
+      {
+       "id": "1c02c1071f7a",
+       "rank": 2,
+       "title": "영조 · 1739년 10월",
+       "text": "창덕궁(조선시대의 궁궐)에 환어(왕이 궁궐로 돌아옴)하였다."
+      },
+      {
+       "id": "604f77607134",
+       "rank": 3,
+       "title": "정조 · 1780년 9월",
+       "text": "호조(조선 시대의 재정 담당 기관)에서 대궐(왕이 거주하는 궁궐) 수리를 청하자 대궐 감독을 담당한 낭관(조선 시대의 관리), 자문감(조선 시대의 궁궐 수리 담당 관리) 관원을 처벌하였다 차대하였다."
+      },
+      {
+       "id": "5942a4c7dba9",
+       "rank": 4,
+       "title": "명종 · 1557년 2월",
+       "text": "창덕궁(조선시대의 궁궐)에 행행(왕이 궁궐 밖으로 나감)하였다."
+      },
+      {
+       "id": "5a47f6bfec50",
+       "rank": 5,
+       "title": "정조 · 1777년 9월",
+       "text": "호랑이가 궁 밖 군보(군대의 병사)의 병졸을 물어 갔다."
+      },
+      {
+       "id": "7f58c54d288b",
+       "rank": 6,
+       "title": "명종 · 1567년 6월",
+       "text": "창덕궁(조선시대의 궁궐)에서 거주하였다."
+      },
+      {
+       "id": "2158c3e3590c",
+       "rank": 7,
+       "title": "세조 · 1463년 10월",
+       "text": "미륵동에서 호랑이를 잡고 환궁(궁으로 돌아옴)하였다."
+      },
+      {
+       "id": "b9750877a7f0",
+       "rank": 8,
+       "title": "숙종 · 1684년 12월",
+       "text": "창경궁(조선시대의 궁궐) 요화당으로 이어하였다."
+      },
+      {
+       "id": "df9ed3e489f7",
+       "rank": 9,
+       "title": "연산군 · 1506년 3월",
+       "text": "호랑이가 청파역리에 들어오니 충철위 등의 군인으로 잡게 하였다."
+      },
+      {
+       "id": "e9eceeca6da0",
+       "rank": 10,
+       "title": "순조 · 1810년 9월",
+       "text": "경희궁(조선시대의 궁궐)에 나아가 재숙(머무름)하였다."
+      }
+     ],
+     "seq": 16,
+     "elapsed_ms": 1117
+    },
+    {
+     "stage": "tool",
+     "status": "done",
+     "title": "도구 결과 수신",
+     "tool": "local-tools_InternalDatabaseSearch",
+     "seq": 17,
+     "elapsed_ms": 1117
+    },
+    {
+     "stage": "model",
+     "status": "running",
+     "title": "검색 근거로 답변 생성",
+     "turn": 2,
+     "seq": 18,
+     "elapsed_ms": 1117
+    },
+    {
+     "stage": "model",
+     "status": "done",
+     "title": "모델 응답 수신",
+     "turn": 2,
+     "seq": 19,
+     "elapsed_ms": 2919
+    }
+   ],
+   "output": "『조선왕조실록』 기록에 따르면, 조선 시대에는 궁궐이나 그 주변에 호랑이가 나타난 사례가 있습니다. 예를 들어, 서기 1626년 인조 4년 12월에 인왕산, 즉 서울 근처 산에서 호랑이가 나타난 기록이 있습니다. 또한 정조 1년 서기 1777년 9월에는 호랑이가 궁 밖 군보의 병졸을 물어 간 사건도 발생했습니다. 이는 당시에는 호랑이가 자연에 흔했던 것으로 보이며, 조선 사회에서도 호랑이의 출현이 일부 기록에 남겨질 정도로 중요한 사건이었다는 것을 보여줍니다.",
+   "elapsed_ms": 2921
   }
- ]
+ ],
+ "note": "카드 제목의 '월월' 중복(서버 _cards 표기)만 '월'로 고침. 나머지는 기록 그대로. 10번(영화 촬영지) 답변이 사실과 달라 본인 결정으로 뺌(2026-11-18). 사실 확인(2026-11-18) 뒤 본인 결정으로 전염병·UFO·편찬·정조 4문항을 빼고 5문항만 남김."
 }

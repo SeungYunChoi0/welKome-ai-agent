@@ -1,0 +1,180 @@
+{
+ "recorded": true,
+ "updated_at": "2026-11-18T00:51:31",
+ "server": "(기록에 쓴 임시 서버 주소는 지움)",
+ "calls": 15,
+ "log": [
+  {
+   "place": "경복궁",
+   "file": "File:Gyeongbokgung(palace) Geunjeongjeon(hall).jpg",
+   "cv_label": null
+  },
+  {
+   "place": "경복궁",
+   "file": "File:Geunjeongjeon Seoul.jpg",
+   "cv_label": "경복궁"
+  },
+  {
+   "place": "창덕궁",
+   "file": "File:Injeongjeon Hall 01.jpg",
+   "cv_label": "대조전"
+  },
+  {
+   "place": "창덕궁",
+   "file": "File:Changdeokgung Seoul 3.jpg",
+   "cv_label": "대조전"
+  },
+  {
+   "place": "종묘",
+   "file": "File:Jongmyo-Jeongjeon.jpg",
+   "cv_label": "종묘"
+  },
+  {
+   "place": "창경궁",
+   "file": "File:Changgyeonggung 20191221 06.jpg",
+   "cv_label": null
+  },
+  {
+   "place": "창경궁",
+   "file": "File:Myeongjeongjeon(명정전).jpg",
+   "cv_label": "경복궁"
+  },
+  {
+   "place": "흥인지문",
+   "file": "File:20240601 144028 Heunginjimun, Seoul 07.jpg",
+   "cv_label": "흥인지문"
+  },
+  {
+   "place": "돈화문",
+   "file": "File:Donhwamun Gate Changdeokgung 2.jpg",
+   "cv_label": "돈화문"
+  },
+  {
+   "place": "광성보",
+   "file": "File:광성보.jpg",
+   "cv_label": "광성보"
+  },
+  {
+   "place": "사직단",
+   "file": "File:20140805 사직단 전경.jpg",
+   "cv_label": "사직단"
+  },
+  {
+   "place": "창덕궁",
+   "file": "File:Changdeokgung, Seoul - Changdeokgung3135.jpg",
+   "cv_label": "대조전"
+  },
+  {
+   "place": "창경궁",
+   "file": "File:Glass house (exterior), Changgyeonggung - Seoul, Korea.jpg",
+   "cv_label": "농성"
+  },
+  {
+   "place": "경복궁",
+   "file": "File:Geunjeongjeon Seoul.jpg",
+   "cv_label": "경복궁"
+  },
+  {
+   "place": "사직단",
+   "file": "File:20140805 사직단 전경.jpg",
+   "cv_label": "사직단"
+  }
+ ],
+ "places": [
+  {
+   "id": "gyeongbokgung",
+   "name": "경복궁",
+   "image": "/static/images/places/gyeongbokgung.jpg",
+   "short": "경복궁은 서울특별시 종로구에 위치한 조선의 법궁으로, 1395년에 창건된 이후 조선 왕조를 대표하는 궁궐이자 사적 제117호로 지정된 유산입니다.",
+   "recorded": true,
+   "recorded_at": "2026-11-18T00:50:48",
+   "cv_label": "경복궁",
+   "description": "경복궁은 서울특별시 종로구에 위치한 조선의 법궁으로, 1395년에 창건된 이후 조선 왕조를 대표하는 궁궐이자 사적 제117호로 지정된 유산입니다.",
+   "sillok_summary": "경복궁은 조선의 중심 궁궐로, 여러 왕들의 중요한 순간을 함께한 역사적인 장소입니다. 조선 제3대 왕인 태종은 1412년에 경복궁을 수리하고 새 누각을 경회루라고 명명했어요. 이후 제4대 왕 세종은 1432년에 경복궁으로 거처를 옮기고, 궁궐 문들의 명칭을 바꾸는 등 경복궁의 발전에 기여했습니다. 1553년에는 조선 제13대 왕 명종 때 궁궐 안쪽에 화재가 발생했지만, 1554년에 경복궁이 완성되었다고 전해집니다. 또한, 경복궁은 조선 제10대 왕 연산군 시절에 곡연을 베푸는 등 다양한 행사들이 열렸던 곳이기도 합니다. 이러한 역사적 순간들이 경복궁의 매력을 더해주고 있어요.",
+   "credit": {
+    "file": "File:Geunjeongjeon Seoul.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Geunjeongjeon_Seoul.jpg",
+    "author": "kallerna",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   }
+  },
+  {
+   "id": "jongmyo",
+   "name": "종묘",
+   "image": "/static/images/places/jongmyo.jpg",
+   "short": "종묘는 서울 종로구 훈정동에 위치한 조선 왕조의 왕과 왕비 신위를 모신 왕실 사당으로, 사적 제125호이자 유네스코 세계문화유산으로 등재된 유산입니다.",
+   "recorded": true,
+   "recorded_at": "2026-11-18T00:31:23",
+   "cv_label": "종묘",
+   "description": "종묘는 서울 종로구 훈정동에 위치한 조선 왕조의 왕과 왕비 신위를 모신 왕실 사당으로, 사적 제125호이자 유네스코 세계문화유산으로 등재된 유산입니다.",
+   "sillok_summary": "종묘는 조선 왕조의 역사를 간직한 중요한 유적지로, 조선의 첫 번째 왕인 태조 이성계가 1394년에 그 건설을 시작했어요. 이후 여러 왕들이 종묘에서 중요한 의식을 거행했는데, 세종대왕은 특히 비가 오기를 기원하는 기우제를 여러 차례 올렸다고 해요. 세조는 종묘에 직접 나아가 제사를 지내며 조상에게 예를 다했답니다. 종묘는 단순한 제사 공간을 넘어 왕실의 중요한 의식과 기원을 담아내는 장소였어요. 이러한 역사적 배경 덕분에 종묘는 오늘날까지도 많은 이들에게 조선 왕조의 문화와 전통을 느낄 수 있는 특별한 장소로 남아 있습니다.",
+   "credit": {
+    "file": "File:Jongmyo-Jeongjeon.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Jongmyo-Jeongjeon.jpg",
+    "author": "João Trindade",
+    "license": "CC BY 2.0",
+    "license_url": "https://creativecommons.org/licenses/by/2.0"
+   }
+  },
+  {
+   "id": "heunginjimun",
+   "name": "흥인지문",
+   "image": "/static/images/places/heunginjimun.jpg",
+   "short": "흥인지문은 서울 종로구 종로6가에 위치한 한양도성의 동쪽 대문으로, 흔히 동대문이라 불리며 조선 후기 형식을 보여주는 성곽문이자 보물 제1B호입니다.",
+   "recorded": true,
+   "recorded_at": "2026-11-18T00:31:23",
+   "cv_label": "흥인지문",
+   "description": "흥인지문은 서울 종로구 종로6가에 위치한 한양도성의 동쪽 대문으로, 흔히 동대문이라 불리며 조선 후기 형식을 보여주는 성곽문이자 보물 제1호입니다.",
+   "sillok_summary": "흥인지문은 조선 시대 서울의 동쪽을 지키던 중요한 성문 중 하나로, 여러 왕들의 통치 시기에 다양한 사건들이 얽혀 있습니다. 조선 제4대 왕인 세종 대왕은 1434년에 흥인문에서 환궁할 때 문무 백관들이 나와 맞이했다고 전해집니다. 이후 제6대 왕인 단종 시기에는 흥인문의 역사(役事)를 감독하는 사람들에게 근무 일수에 따른 보상을 주었다는 기록도 있습니다. 1653년, 제17대 왕인 효종 때는 밤에 흥인문에 불이 나서 숙직하던 군인들이 책임을 지게 되는 일도 있었다고 하네요. 성종 대왕은 1479년에 흥인문을 통해 환궁했으며, 이는 흥인지문이 왕실의 중요한 출입구로 사용되었음을 보여줍니다. 이러한 다양한 역사적 사건들은 흥인지문이 단순한 성문이 아니라 조선 왕조의 중요한 역사적 무대였음을 알려줍니다.",
+   "credit": {
+    "file": "File:20240601 144028 Heunginjimun, Seoul 07.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:20240601_144028_Heunginjimun,_Seoul_07.jpg",
+    "author": "Dwxn",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   }
+  },
+  {
+   "id": "donhwamun",
+   "name": "돈화문",
+   "image": "/static/images/places/donhwamun.jpg",
+   "short": "돈화문은 서울 종로구 창덕궁의 정문으로, 조선 중기에 세워진 중층 누각 형식의 궁문이자 현존 궁궐 정문 중 가장 오래된 건물로 보물 제383호로 지정되어 있습니다.",
+   "recorded": true,
+   "recorded_at": "2026-11-18T00:31:23",
+   "cv_label": "돈화문",
+   "description": "돈화문은 서울 종로구 창덕궁의 정문으로, 조선 중기에 세워진 중층 누각 형식의 궁문이자 현존 궁궐 정문 중 가장 오래된 건물로 보물 제383호로 지정되어 있습니다.",
+   "sillok_summary": "돈화문은 조선시대 궁궐의 정문으로, 여러 왕들의 이야기가 담긴 유서 깊은 장소입니다. 조선 제3대 왕 태종은 1412년에 예문관 제학 변계량에게 돈화문 누각의 종명을 짓도록 명하면서 이곳의 중요성을 강조했어요. 세종대왕 시절에는 부엉이가 돈화문 위에서 울었다는 기록이 두 번이나 남아 있어, 당시 사람들에게 특별한 의미가 있었던 것 같습니다. 또, 광해군 때는 돈화문에서 칙서를 맞이하는 의식을 논의하거나, 왕이 직접 관무재 시험을 보기도 했다고 해요. 연산군 시절에는 돈화문 밖에서 화재가 발생해 50여 호가 소실되기도 했고, 말 매어두는 곳을 봉순사로 부르게 했다는 기록도 있습니다. 돈화문은 이렇게 왕들의 다양한 통치 활동과 사건들의 중심에 있던 역사적인 장소랍니다.",
+   "credit": {
+    "file": "File:Donhwamun Gate Changdeokgung 2.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:Donhwamun_Gate_Changdeokgung_2.jpg",
+    "author": "kallerna",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   }
+  },
+  {
+   "id": "sajikdan",
+   "name": "사직단",
+   "image": "/static/images/places/sajikdan.jpg",
+   "short": "사직단은 서울 종로구 사직로 일대에 위치한 제단으로, 조선 시대에 토지신(사)과 곡식신(직)에게 제사를 올리던 국가 제사 공간이자 사적 제121호로 지정된 유산입니다.",
+   "recorded": true,
+   "recorded_at": "2026-11-18T00:51:31",
+   "cv_label": "사직단",
+   "description": "사직단은 서울 종로구 사직로 일대에 위치한 제단으로, 조선 시대에 토지신(사)과 곡식신(직)에게 제사를 올리던 국가 제사 공간이자 사적 제121호로 지정된 유산입니다.",
+   "sillok_summary": "사직단은 조선 왕조의 중요한 제사 시설로, 조선 태조 4년인 1395년에 처음 건립되었습니다. 이곳은 주로 국가의 안녕과 풍년을 기원하는 기우제를 지내던 장소로 유명합니다. 조선의 여러 왕들이 이곳에서 기우제를 올렸는데, 특히 세종대왕은 재위 기간 동안 여러 차례 사직단에서 비를 기원했다고 전해집니다. 또한, 인조와 영조 같은 왕들도 사직단을 찾아 기우제를 지내며 백성들의 안녕을 기원했습니다. 사직단은 단순한 제사 시설을 넘어 조선 왕조의 문화와 역사를 엿볼 수 있는 중요한 유적지로, 당시의 정치와 사회적 배경을 이해하는 데 큰 도움을 줍니다. 이곳을 방문하면 조선 시대의 왕들이 자연과 조화를 이루고자 했던 노력을 느낄 수 있습니다.",
+   "credit": {
+    "file": "File:20140805 사직단 전경.jpg",
+    "page": "https://commons.wikimedia.org/wiki/File:20140805_%EC%82%AC%EC%A7%81%EB%8B%A8_%EC%A0%84%EA%B2%BD.jpg",
+    "author": "Hangidan",
+    "license": "CC BY-SA 4.0",
+    "license_url": "https://creativecommons.org/licenses/by-sa/4.0"
+   }
+  }
+ ],
+ "edits": [
+  "2026-11-18 광성보 뺌: 실록 요약이 장소와 무관한 '광성' 기록을 엮음(본인 점검 뒤 결정)",
+  "2026-11-18 흥인지문 설명의 오타 '보물 제1B호'를 '보물 제1호'로 고침(서버 class_labels.json 원문의 오타)",
+  "2026-11-18 경복궁·사직단 실록 요약 다시 받음(사실 점검 뒤, 장소당 /predict_image 1회): 옛 요약의 연산군 '아름다움 감상' 왜곡, 사직단 '하늘과 땅 제사' 부정확"
+ ]
+}

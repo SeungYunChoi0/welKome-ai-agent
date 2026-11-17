@@ -85,9 +85,11 @@
     for (const ch of text) {
       if (fast) break;
       box.textContent += ch;
+      box.scrollLeft = box.scrollWidth;   // 긴 질문은 입력 중인 끝부분이 보이게
       await wait(TYPE_MS);
     }
     box.textContent = text;
+    box.scrollLeft = box.scrollWidth;
     await wait(500);
     box.classList.remove('typing');
     box.textContent = '';

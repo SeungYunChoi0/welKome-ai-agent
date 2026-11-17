@@ -6,7 +6,7 @@
 질문 하나에 생성 모델 호출이 두 번 안팎 생기므로(유료) 10문항이면 20회 안팎이다.
 
 사용:
-    python tools/record_demo.py                       # 기본: http://127.0.0.1:8001, 질문 10개
+    python tools/record_demo.py                       # 기본: http://127.0.0.1:8001, 질문 5개
     python tools/record_demo.py --url http://127.0.0.1:8000
     python tools/record_demo.py --only 3              # 3번 질문만 다시 기록해 기존 파일에 끼워 넣기
 
@@ -26,16 +26,14 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / "frontend" / "static" / "demo_runs.json"
 
 QUESTIONS = [
-    "세종 때 훈민정음은 언제 만들어졌어?",
-    "경복궁은 언제 처음 지어졌어?",
-    "세종대왕의 건강은 어땠어?",
-    "1452년에는 무슨 일이 있었어?",
-    "장영실은 어떤 일을 했어?",
-    "조선시대에 전염병이 퍼지면 어떻게 했어?",
-    "측우기는 언제 만들어졌어?",
-    "정조는 수원 화성을 왜 지었어?",
-    "태종은 어떤 왕이었어?",
-    "조선시대 과거 시험은 어떻게 봤어?",
+    # 부스 안내판(EVENT GUIDE)의 질문 5개
+    "조선왕조실록에 ‘고양이’가 등장하는 기록이 있나요?",
+    "조선시대 암행어사는 실제로 어디까지 권한을 행사할 수 있었나요?",
+    "만약 사도세자가 왕이 되었다면 조선의 역사는 어떻게 달라졌을까요?",
+    "조선왕조실록에 기록된 1950년 6·25 전쟁에 대한 정보를 찾아주세요.",
+    "조선시대 궁궐이나 마을에 호랑이가 나타난 적이 있나요?",
+    # 사실 확인 뒤 전염병·UFO·편찬·정조는 뺐다(2026-11-18 본인 결정)
+    # 10번(영화 촬영지)은 답변이 사실과 달라 뺐다(2026-11-18 본인 결정)
 ]
 
 
@@ -43,7 +41,7 @@ def ask(url, question, timeout):
     """질문 하나를 보내고 (진행 이벤트 목록, 결과 이벤트)를 돌려준다."""
     body = json.dumps({"input": question, "chat_history": []}).encode("utf-8")
     req = urllib.request.Request(url.rstrip("/") + "/chat/stream", data=body,
-                                 headers={"Content-Type": "application/json"}, method="POST")
+                                 headers={"Content-Type": "application/json", "ngrok-skip-browser-warning": "1"}, method="POST")
     events, result = [], None
     with urllib.request.urlopen(req, timeout=timeout) as resp:
         buf = []

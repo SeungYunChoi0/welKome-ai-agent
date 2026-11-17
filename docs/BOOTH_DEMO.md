@@ -29,6 +29,14 @@ python tools/record_demo.py              # 터미널 2: 질문 10개를 차례�
 - 서버 포트가 다르면 `--url http://127.0.0.1:8000`.
 - 질문 목록은 `tools/record_demo.py`의 `QUESTIONS`.
 
+## 홈 화면 · 장소 사진 고르기
+
+홈 위쪽의 사진 올리기 칸을 「장소 사진 고르기」로 바꿨다(`frontend/static/places.js`). ◀ ▶ 버튼이나 손가락으로 넘기면 멈춘 뒤 0.4초쯤에 아래 설명 카드와 실록 카드가 그 장소 정보로 바뀐다. 정보는 미리 받아 둔 `frontend/static/places.json`에서 읽으므로 서버를 부르지 않는다.
+
+- 사진: 위키미디어 공용(CC0 · 퍼블릭 도메인 · CC BY · CC BY-SA), 출처는 `frontend/static/images/places/CREDITS.md`.
+- 다시 받기: `python tools/record_places.py --url <서버 주소>` (사진마다 `/predict_image` 1회, 유료). 모델이 다른 이름으로 알아본 사진은 다음 후보로 바꾸고, 끝내 안 맞으면 그 장소를 뺀다.
+- 한 장소만: `--only jongmyo`. 서버 없이 사진과 짧은 설명만: `--offline`.
+
 ## 시연 속도 조정 (`frontend/static/demo.js` 맨 위)
 
 | 값 | 기본 | 뜻 |
